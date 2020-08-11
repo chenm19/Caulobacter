@@ -25,7 +25,7 @@ p.k4_pos=10;
 p.k4_neg=5;
 p.ks_cdg=0.5;
 p.kd_cdg=1.5;
-p.k5_pos=0.2;%20;
+p.k5_pos=0.2;%0.2;%20;
 p.k5_neg=0.1;
 %% Diffusion parameters [units --> um^2/min]
 p.D_complex1=1;
@@ -39,8 +39,8 @@ p.D_complex3=1;
 %%
 p.J1=1.5;%10
 p.J2=0.5;%0.5;
-p.J3=1;%%0.5;
-p.J4=0.8;%0.4;
+p.J3=0.2;%%0.5;
+p.J4=0.2;%0.4;
 p.Km1=1;%5;
 p.J5=0.5;
 p.J6=2;
