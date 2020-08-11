@@ -218,7 +218,7 @@ dydt(CpdRP)=p.k2_neg*y(CpdR)-p.k2_pos*y(CpdRP)*p.divkp_oldpole/(p.divkp_oldpole+
 
 
 dydt(CPLX2)=p.k3_pos*y(CPLX1)*y(RcdA)-p.k3_neg*y(CPLX2)+p.k5_neg*y(CPLX3)-p.k5_pos*cdG^2*y(CPLX2);
-dydt(RcdA)=p.ks_rcda*y(RcdA)^1/(y(RcdA)^1+p.J3^1)-p.kd_rcda*y(RcdA)*y(CPLX1)^4/(y(CPLX1)^4+p.J4^4);
+dydt(RcdA)=p.ks_rcda*y(RcdA)^1/(y(RcdA)^1+p.J3^1)-p.kd_rcda*y(RcdA)*y(CPLX1)/(y(CPLX1)+p.J4);
 
 
 dydt(CPLX3)=-p.k5_neg*y(CPLX3)+p.k5_pos*cdG^2*y(CPLX2);
