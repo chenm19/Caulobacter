@@ -192,6 +192,5 @@ end
 %y_initial = interp1(tout, yout, 442);
 %save('swstmodelwtsim445.txt', 'y_initial', '-ASCII');
 
+save('output.mat', 'tout', 'yout')
 %%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
-
-plotting

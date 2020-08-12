@@ -1,6 +1,7 @@
 %% Ploting the time courses of model variables
 close all; clf;
 
+load('output.mat')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Five transcriptional regulators
 % figure(11)
@@ -23,6 +24,36 @@ close all; clf;
 
 % hold on;
 
+Ini = 1;
+Elong = 2;
+DNA = 3;
+Count = 4;
+hcori = 5;
+hCcrM = 6;
+hCtrA = 7;
+mCcrM = 8;
+mDnaA = 9;
+mGcrA = 10;
+mSciP = 11;
+mCtrA = 12;
+CcrM = 13;
+DnaA = 14;
+GcrA = 15;
+SciP = 16;
+CtrA = 17;
+Sup = 18;
+DivKp = 19;
+I = 20;
+II = 21;
+III = 22;
+tot = 28;
+
+CPLX1 = 23;
+CpdR = 24;
+CpdRP = 25;
+CPLX2 = 26;
+RcdA = 27;
+CPLX3 = 28;
 
 t =  [5, 30, 60 90 120 150] + 1050;
 dDnaA = [1262	1164 500	496 	1066	1028]./445;
@@ -166,7 +197,7 @@ p2 = line(tout, yout(:, Elong), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 p3 = line(tout, yout(:, DNA), 'Color', 'm', 'LineWidth', 2, 'Linestyle', '-');
 p4 = line(tout, yout(:, Count), 'Color', 'b', 'LineWidth', 2, 'Linestyle', '--');
 % p5 = line(tout, yout(:, Ini), 'Color', 'r', 'LineWidth', 2, 'Linestyle', '-');
-h = legend( 'Elongation',  'DNA', 'Chromosome', 'Ini', 'Location', 'North');
+h = legend( 'Elongation',  'DNA', 'Chromosome');
 % axis([0 600 0 0.1])
 
 % figure(55)
@@ -377,3 +408,116 @@ h = legend( 'Elongation',  'DNA', 'Chromosome', 'Ini', 'Location', 'North');
 % set(gca,'xtick',[0:30:150])
 % set(gca,'ytick',[1,2])
 % set(gca,'yticklabel',{'Experiment','Simulation'})
+
+
+%%  Complex figures 
+% plot Complex1, CpdR, CpdRP vs Time
+figure();
+hold on; 
+subplot(3,1,1);
+plot(tout, yout(:, CPLX1),'k');
+xlabel('Time/min')
+ylabel('Complex1')
+subplot(3,1,2);
+plot(tout,yout(:,CpdR),'r');
+xlabel('Time/min')
+ylabel('CpdR')
+subplot(3,1,3);
+plot(tout,yout(:,CpdRP),'b');
+xlabel('Time/min')
+ylabel('CpdRP')
+
+% plot Complex2, RcdA vs Time
+figure();
+hold on;
+subplot(2,1,1);
+plot(tout,yout(:,CPLX2),'k');
+xlabel('Time/min')
+ylabel('Complex2')
+subplot(2,1,2);
+plot(tout,yout(:,RcdA),'r');
+xlabel('Time/min')
+ylabel('RcdA')
+
+% plot cpdR + cpdRP vs Time
+figure();
+hold on;
+plot(tout,yout(:,CpdR)+yout(:,CpdRP))
+xlabel('Time/min')
+ylabel('total CpdR')
+
+% plot Complex3 vs Time
+figure();
+hold on;
+plot(tout,yout(:,CPLX3))
+xlabel('Time/min')
+ylabel('Complex3')
+
+%% Comparing experimental vs simulated Complex data
+% plotting the 4th cell cycle, 450-600 minutes
+
+figure();
+[~, a]=min(abs(tout(:)-450));  % a and b are indeces of beginning and end of cell cycle 
+[~, b]=min(abs(tout(:)-600));
+
+% subplot(3,1,1);
+%time=[0,20,40,60,80,100,120];
+% % cpdrp=[9118.983,4425.406,3905.163,1912.92,5768.719,8952.497,6521.347];
+% cpdrp=[9118.983;4425.406;3905.163;1912.92;5768.719;8952.497;22145.296];
+% % cpdrp=cpdrp/max(cpdrp);
+% dif=max(cpdrp)-min(cpdrp);
+% cpdrp=(cpdrp-min(cpdrp))/dif;
+% 
+% scatter(time+20,cpdrp,'ro','MarkerFaceColor','r')
+% hold on;
+% CPDRP=yout(:,3);
+% % plot(tout,CPDRP);
+% CPDRP=CPDRP(a:b);
+% DIF=max(CPDRP)-min(CPDRP);
+% CPDRP=(CPDRP-min(CPDRP))/DIF;
+% plot(tout(a:b)-450,CPDRP)%plot the forth cell cycle 450-600min
+% xlabel('Time/min')
+% ylabel('CpdRP')
+% legend('experimental data','simulated CpdRP')
+% hold on;
+
+
+subplot(2,1,1)
+% cpdr=[21001.196,20613.125,13581.933,10400.397,10563.811,13216.569,20216.276];
+cpdr=[27532.359,40939.622,20027.844,10400.397,10563.811,13216.569,20216.276];
+% cpdr=cpdr/max(cpdr);
+dif=max(cpdr) - min(cpdr);
+cpdr=(cpdr-min(cpdr))/dif;
+scatter(time+10,cpdr,'ro','MarkerFaceColor','r')  % plotting experimental cpdr points
+hold on;
+CPDR = yout(:, CpdR);                                   
+CPDR = CPDR(a:b);                  % gathering relevant simulated CpdR data
+% CPDR=CPDR/max(CPDR);
+DIF = max(CPDR) - min(CPDR);
+CPDR = (CPDR-min(CPDR))/DIF;
+plot(tout(a:b)-450, CPDR)            % plotting simulated CpdR
+xlabel('Time/min')
+ylabel('CpdR')
+legend('experimental data', 'simulated CpdR', 'location', 'northeastoutside')
+hold on;
+
+time2=[0,9.4,26.7,44.8,62.1176,79.8118,97.5059,115.2,133.271,151.341];
+rcda=[0.0000136,0.093,0.984,1.00163,0.528269,0.517348,0.517987,0.431921,0.738932,0.271377];
+% rcda=rcda/max(rcda);
+dif=max(rcda)-min(rcda);
+rcda=(rcda-min(rcda))/dif;
+
+subplot(2, 1, 2)
+scatter(time2, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
+hold on;
+RCDA = yout(:, RcdA);
+RCDA = RCDA(a:b);                    % gathering relevant simulated CpdR data
+% RCDA=RCDA/max(RCDA);
+DIF = max(RCDA) - min(RCDA);
+RCDA = (RCDA-min(RCDA))/DIF;         % plotting simulated RcdA data
+plot(tout(a:b)-450, RCDA)
+xlabel('Time/min')
+ylabel('RcdA')
+legend('experimental data','simulated RcdA', 'location', 'northeastoutside')
+
+

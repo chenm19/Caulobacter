@@ -84,10 +84,8 @@ JaCtrAGcrA = 3.0;	naCtrAGcrA = 2;
 JiCtrACtrA = 3.5;	niCtrACtrA = 2;
 JiCtrASciP = 3.0;	niCtrASciP = 2;
 
-% Minghan new add
-
-
 % end of parameters
+
 %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&&&&&&&&%
 
 % This section is used for simulations of mutants 
@@ -166,55 +164,51 @@ dydt(Sup) = 0.01;
 dydt(DivKp) = 0;
 
 %%
-T=150;%period of Caulobacter
-t_d=rem(t,T); %return remainder after division t/T
+T=150;        % period of Caulobacter
+t_d=rem(t,T); % return remainder after division t/T
 
-p1 =   1.315e-06 ;
-       p2 =  -0.0002346 ;
-       p3 =    0.001233;
-       p4 =      0.9975;
-       p.divkp_free=p1*t_d.^3 + p2*t_d.^2 + p3*t_d + p4;
-   %%%%DivK~P_oldpole
-%     d1 =  -8.515e-06;
-%        d2 =   0.0009505;
-%        d3 =    -0.01231 ;
-%        d4 =      0.1302 ;
-%      p.divkp_oldpole= (d1*t_d.^3 + d2*t_d.^2 + d3*t_d + d4).*(t_d<=98)+0.*(t_d>98);
-  p.divkp_oldpole=0.6167*sin(2*pi/150*t_d+5.364)+0.3028;
-  p.divkp_oldpole(p.divkp_oldpole<0)=0;   
-     %RcdA
+%DivKP
+p.divkp=0.004218*t_d+ 0.5779;
+p.divkp(p.divkp<0)=0;
+%0.92
+% Linear model Poly3:
+  p.divkp = 1.64e-06*t_d.^3-0.0003057 *t_d.^2 + 0.02095*t_d +0.3282 ;
+  
+% Coefficients (with 95% confidence bounds):
+%linear model poly1 divkp
+p.divkp=0.004218*t_d+0.5779;
+    
+     
+%RcdA
 q1 =  -8.725e-08 ;
        q2 =   2.948e-05 ;
        q3 =   -0.003332  ;
        q4 =      0.1384 ;
        q5 =     -0.8569;
-       p.rcda=q1*t_d.^4 + q2*t_d.^3 + q3*t_d.^2 + q4*t_d+ q5;
+       
+p.rcda=q1*t_d.^4 + q2*t_d.^3 + q3*t_d.^2 + q4*t_d+ q5;
 
 
-
-%%
 %% cdG
 
-% cdG=2.335*sin(0.02876*t_d-0.4084) + 1.955*sin(0.03501*t_d+2.189);%Goodness of fit:
-% %   SSE: 0.03746
-% %   R-square: 0.8904
-% %   Adjusted R-square: 0.6163
-% %   RMSE: 0.1369
-%%%% make the last four points as 0.1
 cdG=0.4245*sin(pi/75*t_d+0.3976)+0.3872;
+cdG(cdG<0)=0;
 % Goodness of fit:
 %   SSE: 0.1651
 %   R-square: 0.8034
 %   Adjusted R-square: 0.7248
 %   RMSE: 0.1817
+%%%????????
 %%
 
 dydt(CPLX1)=p.k1_pos*p.clpxp*y(CpdR)-p.k1_neg*y(CPLX1)...
     -p.k3_pos*y(CPLX1)*y(RcdA)+p.k3_neg*y(CPLX2);
+
 dydt(CpdR)=p.ks_cpdr-p.kd_cpdr*y(CpdR)*y(CPLX1)/(y(CPLX1)+p.J1)...
     +p.k1_neg*y(CPLX1)-p.k1_pos*p.clpxp*y(CpdR)/(y(CpdR)+p.Km1)...
-    +p.k2_pos*y(CpdRP)*p.divkp_oldpole/(p.divkp_oldpole+p.J2)-p.k2_neg*y(CpdR);
-dydt(CpdRP)=p.k2_neg*y(CpdR)-p.k2_pos*y(CpdRP)*p.divkp_oldpole/(p.divkp_oldpole+p.J2);
+    +p.k2_pos*y(CpdRP)*p.divkp/(p.divkp+p.J2)-p.k2_neg*y(CpdR);
+
+dydt(CpdRP)=p.k2_neg*y(CpdR)-p.k2_pos*y(CpdRP)*p.divkp/(p.divkp+p.J2);
 
 
 dydt(CPLX2)=p.k3_pos*y(CPLX1)*y(RcdA)-p.k3_neg*y(CPLX2)+p.k5_neg*y(CPLX3)-p.k5_pos*cdG^2*y(CPLX2);
@@ -222,36 +216,6 @@ dydt(RcdA)=p.ks_rcda*y(RcdA)^1/(y(RcdA)^1+p.J3^1)-p.kd_rcda*y(RcdA)*y(CPLX1)/(y(
 
 
 dydt(CPLX3)=-p.k5_neg*y(CPLX3)+p.k5_pos*cdG^2*y(CPLX2);
-
-
-% %%%%%%%%%%y(CPLX1) (ClpXP:CpdR)
-% % dydt(CPLX1)=p.k1_pos*p.clpxp*y(CpdR)/(y(CpdR)+p.Km1)-p.k1_neg*y(CPLX1);
-% % dydt(CPLX1)=p.k1_pos*p.clpxp*y(CpdR)-p.k1_neg*y(CPLX1);
-% dydt(CPLX1)=p.k1_pos*p.clpxp*y(CpdR)-p.k1_neg*y(CPLX1)...
-%     -p.k3_pos*y(CPLX1)*y(RcdA)+p.k3_neg*y(CPLX2);
-% % dydt(CpdR)=p.ks_cpdr-p.kd_cpdr*y(CpdR)*y(CPLX1)/(y(CPLX1)+p.J1)...
-% %     +p.k1_neg*y(CPLX1)-p.k1_pos*p.clpxp*y(CpdR)/(y(CpdR)+p.Km1)...
-% %     +p.k2_pos*y(CpdRP)*p.divkp_oldpole/(p.divkp_oldpole+p.J2)-p.k2_neg*y(CpdR);
-% dydt(CpdR)=p.ks_cpdr-p.kd_cpdr*y(CpdR)*y(CPLX1)/(y(CPLX1)+p.J1)...
-%     +p.k1_neg*y(CPLX1)-p.k1_pos*p.clpxp*y(CpdR)/(y(CpdR)+p.Km1)...
-%     +p.k2_pos*y(CpdRP)*p.divkp_oldpole/(p.divkp_oldpole+p.J2)-p.k2_neg*y(CpdR);
-% dydt(CpdRP)=p.k2_neg*y(CpdR)-p.k2_pos*y(CpdRP)*p.divkp_oldpole/(p.divkp_oldpole+p.J2);
-% 
-% % dydt=[dydt(CPLX1); dydt(CpdR); dydt(CpdRP)];
-% 
-% % dydt(CPLX2)=p.k3_pos*y(CPLX1)*RcdA-p.k3_neg*y(CPLX2);
-% dydt(CPLX2)=p.k3_pos*y(CPLX1)*y(RcdA)-p.k3_neg*y(CPLX2)+p.k5_neg*y(CPLX3)-p.k5_pos*cdG^2*y(CPLX2);
-% dydt(RcdA)=p.ks_rcda*y(RcdA)^1/(y(RcdA)^1+p.J3^1)-p.kd_rcda*y(RcdA)*y(CPLX1)^4/(y(CPLX1)^4+p.J4^4);
-% % dydt(RcdA)=p.ks_rcda*y(RcdA)^4/(y(RcdA)^4+p.J3^4)-p.kd_rcda*y(RcdA)*y(CPLX1)/(y(CPLX1)+p.J4);
-% % dydt(RcdA)=p.ks_rcda-p.kd_rcda*y(RcdA)*y(CPLX1)/(y(CPLX1)+p.J4);
-% 
-% % dydt(RcdA)=p.ks_rcda*y(RcdA)/(y(RcdA)+p.J3)-p.kd_rcda*y(RcdA)*y(CPLX1);
-% 
-% % dydt=[dydt(CPLX1); dydt(CpdR); dydt(CpdRP); dydt(CPLX2); dydt(RcdA)];
-% %%
-% 
-% dydt(CPLX3)=-p.k5_neg*y(CPLX3)+p.k5_pos*cdG^2*y(CPLX2);
-
 
 % end of equations
 %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&&&&&&&&%

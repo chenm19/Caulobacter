@@ -24,7 +24,8 @@ p.divkp(p.divkp<0)=0;
 % Coefficients (with 95% confidence bounds):
 %linear model poly1 divkp
 p.divkp=0.004218*t_d+0.5779;
-     %RcdA
+     
+%RcdA
 q1 =  -8.725e-08 ;
        q2 =   2.948e-05 ;
        q3 =   -0.003332  ;

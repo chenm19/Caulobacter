@@ -115,4 +115,3 @@ plot(T(a:b)-450,RCDA)
 xlabel('Time/min')
 ylabel('RcdA')
 legend('experimental data','simulated RcdA')
-
