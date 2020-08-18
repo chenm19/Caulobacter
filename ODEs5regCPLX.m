@@ -168,11 +168,11 @@ T=150;        % period of Caulobacter
 t_d=rem(t,T); % return remainder after division t/T
 
 %DivKP
-p.divkp=0.004218*t_d+ 0.5779;
-p.divkp(p.divkp<0)=0;
+%p.divkp=0.004218*t_d+ 0.5779;
+%p.divkp(p.divkp<0)=0;
 %0.92
 % Linear model Poly3:
-  p.divkp = 1.64e-06*t_d.^3-0.0003057 *t_d.^2 + 0.02095*t_d +0.3282 ;
+%  p.divkp = 1.64e-06*t_d.^3-0.0003057 *t_d.^2 + 0.02095*t_d +0.3282 ;
   
 % Coefficients (with 95% confidence bounds):
 %linear model poly1 divkp
