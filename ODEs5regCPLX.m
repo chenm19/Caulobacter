@@ -181,8 +181,8 @@ p.divkp=0.004218*t_d+0.5779;
      
 %RcdA
 q1 =  -8.725e-08 ;
-       q2 =   2.948e-05 ;
-       q3 =   -0.003332  ;
+       q2 =   2.948e-05;
+       q3 =   -0.003332;
        q4 =      0.1384 ;
        q5 =     -0.8569;
        
@@ -191,21 +191,15 @@ p.rcda=q1*t_d.^4 + q2*t_d.^3 + q3*t_d.^2 + q4*t_d+ q5;
 
 %% cdG
 
-cdG=0.4245*sin(pi/75*t_d+0.3976)+0.3872;
+cdG= 0.3233 *sin(pi/75*t_d+0.3469 )+ 0.3363;
 cdG(cdG<0)=0;
-% Goodness of fit:
-%   SSE: 0.1651
-%   R-square: 0.8034
-%   Adjusted R-square: 0.7248
-%   RMSE: 0.1817
-%%%????????
 %%
 
 dydt(CPLX1)=p.k1_pos*p.clpxp*y(CpdR)-p.k1_neg*y(CPLX1)...
     -p.k3_pos*y(CPLX1)*y(RcdA)+p.k3_neg*y(CPLX2);
 
 dydt(CpdR)=p.ks_cpdr-p.kd_cpdr*y(CpdR)*y(CPLX1)/(y(CPLX1)+p.J1)...
-    +p.k1_neg*y(CPLX1)-p.k1_pos*p.clpxp*y(CpdR)/(y(CpdR)+p.Km1)...
+    +p.k1_neg*y(CPLX1)-p.k1_pos*p.clpxp*y(CpdR)...
     +p.k2_pos*y(CpdRP)*p.divkp/(p.divkp+p.J2)-p.k2_neg*y(CpdR);
 
 dydt(CpdRP)=p.k2_neg*y(CpdR)-p.k2_pos*y(CpdRP)*p.divkp/(p.divkp+p.J2);
