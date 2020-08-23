@@ -1,5 +1,41 @@
 load('output.mat');
 close all;
+
+Ini = 1;
+Elong = 2;
+DNA = 3;
+Count = 4;
+hcori = 5;
+hCcrM = 6;
+hCtrA = 7;
+mCcrM = 8;
+mDnaA = 9;
+mGcrA = 10;
+mSciP = 11;
+mCtrA = 12;
+CcrM = 13;
+DnaA = 14;
+GcrA = 15;
+SciP = 16;
+CtrA = 17;
+Sup = 18;
+DivKp = 19;
+I = 20;
+II = 21;
+III = 22;
+tot = 28;
+
+CPLX1 = 23;
+CpdR = 24;
+CpdRP = 25;
+CPLX2 = 26;
+RcdA = 27;
+CPLX3 = 28;
+
+% isolating the indices of the 8th cell cycle:
+[~, a]=min(abs(tout(:)-1200));  % a and b are indeces of beginning and end of cell cycle 
+[~, b]=min(abs(tout(:)-1350));
+
 %% old protein data
 tp_old = [0, 20, 40, 60, 80, 100, 120, 140] + 1200;
 tpCcrM_old = [0, 20, 40, 60, 80, 100, 120] + 1200;
@@ -35,9 +71,11 @@ tp4 = [0 10 20 30 40 50 60 70 80 90 100] + 1200;
 pSciP4 = [8176.062 3082.648 894.456 248.12 248.12 248.12 248.12 855.77 1727.527 2709.941 2193.042];
 pCtrA4 = [3465.406 1278.77 928.527 590.991 1960.355 3866.477 4892.77 5509.062 4213.941 4028.77 2851.042];
 
+save_figs = 0
+
 %% Plotting concentration of 5 main regulator proteins (and protease complex) against time
 % Ccrm protein plot
-PCCRM3 = (pCcrM3 - min(pCcrM3))/(max(pCcrM3)-min(pCcrM3))*(max(yout(a:b, CcrM))-min(yout(a:b, CcrM)))+min(yout(a:b, CcrM))
+PCCRM3 = (pCcrM3 - min(pCcrM3))/(max(pCcrM3)-min(pCcrM3))*(max(yout(a:b, CcrM))-min(yout(a:b, CcrM)))+min(yout(a:b, CcrM));
 figure()
 set(gcf,'Position',[100 100 500 500])
 line(tout(a:b), yout(a:b, CcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -56,7 +94,7 @@ if save_figs == 1
 end
 
 % DnaA protein plot
-PDNAA1 = (pDnaA1 - min(pDnaA1))/(max(pDnaA1)-min(pDnaA1))*(max(yout(a:b, DnaA))-min(yout(a:b, DnaA)))+min(yout(a:b, DnaA))
+PDNAA1 = (pDnaA1 - min(pDnaA1))/(max(pDnaA1)-min(pDnaA1))*(max(yout(a:b, DnaA))-min(yout(a:b, DnaA)))+min(yout(a:b, DnaA));
 
 figure()
 set(gcf,'Position',[100 100 500 500])
@@ -76,8 +114,8 @@ if save_figs == 1
 end
 
 % GcrA protein plot
-PGCRA1 = (pGcrA1 - min(pGcrA1))/(max(pGcrA1)-min(pGcrA1))*(max(yout(a:b, GcrA))-min(yout(a:b, GcrA)))+min(yout(a:b, GcrA))
-PGCRA2 = (pGcrA2 - min(pGcrA2))/(max(pGcrA2)-min(pGcrA2))*(max(yout(a:b, GcrA))-min(yout(a:b, GcrA)))+min(yout(a:b, GcrA))
+PGCRA1 = (pGcrA1 - min(pGcrA1))/(max(pGcrA1)-min(pGcrA1))*(max(yout(a:b, GcrA))-min(yout(a:b, GcrA)))+min(yout(a:b, GcrA));
+PGCRA2 = (pGcrA2 - min(pGcrA2))/(max(pGcrA2)-min(pGcrA2))*(max(yout(a:b, GcrA))-min(yout(a:b, GcrA)))+min(yout(a:b, GcrA));
 
 figure()
 set(gcf,'Position',[100 100 500 500])
@@ -100,8 +138,8 @@ end
 
 
 % SciP protein plot
-PSCIP2 = (pSciP2 - min(pSciP2))/(max(pSciP2)-min(pSciP2))*(max(yout(a:b, SciP))-min(yout(a:b, SciP)))+min(yout(a:b, SciP))
-PSCIP4 = (pSciP4 - min(pSciP4))/(max(pSciP4)-min(pSciP4))*(max(yout(a:b, SciP))-min(yout(a:b, SciP)))+min(yout(a:b, SciP))
+PSCIP2 = (pSciP2 - min(pSciP2))/(max(pSciP2)-min(pSciP2))*(max(yout(a:b, SciP))-min(yout(a:b, SciP)))+min(yout(a:b, SciP));
+PSCIP4 = (pSciP4 - min(pSciP4))/(max(pSciP4)-min(pSciP4))*(max(yout(a:b, SciP))-min(yout(a:b, SciP)))+min(yout(a:b, SciP));
 
 figure()
 set(gcf,'Position',[100 100 500 500])
@@ -123,10 +161,10 @@ end
 
 
 % CtrA protein plot
-PCTRA1 = (pCtrA1 - min(pCtrA1))/(max(pCtrA1)-min(pCtrA1))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA))
-PCTRA2 = (pCtrA2 - min(pCtrA2))/(max(pCtrA2)-min(pCtrA2))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA))
-PCTRA3 = (pCtrA3 - min(pCtrA3))/(max(pCtrA3)-min(pCtrA3))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA))
-PCTRA4 = (pCtrA4 - min(pCtrA4))/(max(pCtrA4)-min(pCtrA4))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA))
+PCTRA1 = (pCtrA1 - min(pCtrA1))/(max(pCtrA1)-min(pCtrA1))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA));
+PCTRA2 = (pCtrA2 - min(pCtrA2))/(max(pCtrA2)-min(pCtrA2))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA));
+PCTRA3 = (pCtrA3 - min(pCtrA3))/(max(pCtrA3)-min(pCtrA3))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA));
+PCTRA4 = (pCtrA4 - min(pCtrA4))/(max(pCtrA4)-min(pCtrA4))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA));
 
 figure()
 set(gcf,'Position',[100 100 500 500])
