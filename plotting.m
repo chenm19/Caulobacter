@@ -667,11 +667,12 @@ cpdr = (cpdr - min(cpdr))/(max(cpdr)-min(cpdr))*(max(CPDR)-min(CPDR))+min(CPDR);
 
 % cpdr=cpdr/max(cpdr);
 
-scatter(time+10,cpdr,'ro','MarkerFaceColor','r')  % plotting experimental cpdr points
+scatter(time+10,cpdr,'ro-','MarkerFaceColor','r')  % plotting experimental cpdr points
+
 xlim([1200 1350])
 xlabel('Time (min)')
 ylabel('Normalized CpdR')
-legend('experimental data', 'simulated CpdR', 'location', 'northeastoutside')
+legend('simulated CpdR','Original data', 'location', 'northeastoutside')
 hold on;
 f = gcf;
 if save_figs == 1
@@ -715,13 +716,18 @@ RCDA = RCDA(a:b);                    % gathering relevant simulated CpdR data
 
 plot(tout(a:b), RCDA, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')
 xlim([1200 1350])
-time2=[0,9.4,26.7,44.8,62.1176,79.8118,97.5059,115.2,133.271,151.341];
+time2=[0,9.4,26.7,44.8,62.1176,79.8118,97.5059,115.2,133.271,151.341] + 1200;
+time3 = [0 20 40 60 80 100 120 140] + 1200;
+
 rcda=[0.0000136,0.093,0.984,1.00163,0.528269,0.517348,0.517987,0.431921,0.738932,0.271377];
+rcda2 = [1869.912 14329.841 14835.619 7990.012 7781.669 7777.083 6608.083 11151.669];
 rcda = (rcda - min(rcda))/(max(rcda)-min(rcda))*(max(RCDA)-min(RCDA))+min(RCDA);
-scatter(time2 + 1200, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
+rcda2 = (rcda2 - min(rcda2))/(max(rcda2)-min(rcda2))*(max(RCDA)-min(RCDA))+min(RCDA);
+scatter(time2, rcda, 'ro-', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
+plot(time3, rcda2, 'go-', 'MarkerFaceColor', 'g')  % plotting experimental rcda points
 xlabel('Time (min)')
 ylabel('Normalized RcdA')
-legend('simulated RcdA', 'experimental data', 'location', 'northeastoutside')
+legend('simulated RcdA', 'original data', 'New experimental data', 'location', 'northeastoutside')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/RcdA.png','Resolution',300)
