@@ -638,7 +638,7 @@ box on;
 plot(tout(a:b), yout(a:b, CpdRP) + yout(a:b, CpdR), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([1200 1350])
 xlabel('Time (min)')
-ylabel('Scaled CpdRP')
+ylabel('Scaled Total CpdR')
 title('Total CpdR (CpdR + CpdRP) (8th cell cycle)')
 f = gcf;
 if save_figs == 1
@@ -653,7 +653,7 @@ box on;
 plot(tout, yout(:, CpdRP) + yout(:, CpdR), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([0 1500])
 xlabel('Time (min)')
-ylabel('Scaled CpdRP')
+ylabel('Scaled Total CpdRP')
 title('Total CpdR (CpdR + CpdRP)')
 f = gcf;
 if save_figs == 1
