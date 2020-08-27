@@ -9,7 +9,7 @@ save_figs = 0;  %switch for saving: 1 = save; 0 = no save
 % Five transcriptional regulators
 % figure(11)
 % title('Four transcriptional regulators from Shenghua model')
-% p1 = line(tout, yout(:, CtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+% line(tout, yout(:, CtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 % p2 = line(tout, yout(:, DnaA), 'Color', 'm', 'LineWidth', 2, 'Linestyle', '-');
 % p3 = line(tout, yout(:, GcrA), 'Color', 'b', 'LineWidth', 2, 'Linestyle', '-');
 % p4 = line(tout, yout(:, CcrM), 'Color', 'y', 'LineWidth', 2, 'Linestyle', '-');
@@ -65,42 +65,66 @@ dSciP = [2858	451	199	796	2956	2649]./445;
 dGcrA = [550	3001	1275	476	725	1493]./445;
 dCtrA = [195	612	2251	3216	2486	1617]./445;
 
-% old protein data
-tp = [0, 20, 40, 60, 80, 100, 120, 140] + 1200;
-tpCcrM = [0, 20, 40, 60, 80, 100, 120] + 1200;
+%% old protein data
+tp_old = [0, 20, 40, 60, 80, 100, 120, 140] + 1200;
+tpCcrM_old = [0, 20, 40, 60, 80, 100, 120] + 1200;
 tp2_old = [9, 27, 44, 62, 80, 98, 117, 134, 152] + 1200;
 
-pDnaA = 2*[0.4567	0.9857	0.9147	0.3154	0.128	0.0793	0.4203	0.6582];
-pGcrA = 6*[0	0.5021	1	0.884	1	0.554	0.662	0.7388];
+pDnaA_old = 2*[0.4567	0.9857	0.9147	0.3154	0.128	0.0793	0.4203	0.6582];
+pGcrA_old = 6*[0	0.5021	1	0.884	1	0.554	0.662	0.7388];
 pCtrA1_old = 7*[0.7791	0	0	0	0.4682	1	0.8591	0.6672];
-pCcrM = [0.979012341	0.245634747	0.105451343	0.054014407	0.031971569	0.078998499	1];
-pSciP = 0.7*[7.757911401	7.931725156	4.139518022	1	0.446070124	0.429447455	0.761125117	3.856508369	8.881823903];
+pCcrM_old = [0.979012341	0.245634747	0.105451343	0.054014407	0.031971569	0.078998499	1];
+pSciP_old = 0.7*[7.757911401	7.931725156	4.139518022	1	0.446070124	0.429447455	0.761125117	3.856508369	8.881823903];
 pCtrA2_old = [0.8158	0.614	0.1881	0.0323	0.3822	0.7033	0.8924	1	0.782];
+pCpdRP = [9118.983,4425.406,3905.163,1912.92,5768.719,8952.497,6521.347];
+tpCpdRP = [20,40,60,80,100,120,140] + 1200;
+
+rcda =[0.0000136,0.093,0.984,1.00163,0.528269,0.517348,0.517987,0.431921,0.738932,0.271377];
+tpRcdA =[0,9.4,26.7,44.8,62.1176,79.8118,97.5059,115.2,133.271,151.341] + 1200;
 
 %% new protein data:
 
 % publication 1:
-tp1 = [0 20 40 60 80 100 120 140]
-pDnaA1 = [4784.305 10537.962 9511.012 3134.012 1447.184 1014.355 3693.083 6339.548]
-pGcrA1 = [0 8632.062 16136.355 14185.012 14835.891 8353.184 9923.598 10884.719]
-pCtrA1 = [6648.012 0 0 0 4042.598 8955.376 7497.598 6225.962]
+tp1 = [0 20 40 60 80 100 120 140] + 1200;
+pDnaA1 = [4784.305 10537.962 9511.012 3134.012 1447.184 1014.355 3693.083 6339.548];
+pGcrA1 = [0 8632.062 16136.355 14185.012 14835.891 8353.184 9923.598 10884.719];
+pCtrA1 = [6648.012 0 0 0 4042.598 8955.376 7497.598 6225.962];
 
 %publication 2:
-tp2 = [0 20 40 60 80 100 120 140 160]
-pSciP2 = [9239.255 9518.134 4585.305 610.042 161.657 388.435 4424.062 10748.426 12927.062]
-pGcrA2 = [0 444.87 4548.648 6148.669 5947.891 4592.062 5067.406 5809.548 6002.77]
-pCtrA2 = [7177.962 9270.255 1045.406 0 315.506 5709.77 8172.598 7724.355 8002.941]
+tp2 = [0 20 40 60 80 100 120 140] + 1200;
+pSciP2 = [9239.255 9518.134 4585.305 610.042 161.657 388.435 4424.062 10748.426];
+pGcrA2 = [0 444.87 4548.648 6148.669 5947.891 4592.062 5067.406 5809.548];
+pCtrA2 = [7177.962 9270.255 1045.406 0 315.506 5709.77 8172.598 7724.355];
 
 %publication 3:
-tp3 = [0 10 20 30 40 50 60 70 80 90 100]
-pCcrM3 = [1202.5475 1202.5475 1861.891 2587.134 3223.598 4278.033 3304.477 6183.619 6666.841 5629.205]
-pCtrA3 = [4366.669 544.698 678.284 1565.962 3814.74 6857.891 7663.376 13218.74 12383.598 10310.083]
+tp3 = [0 16.5 33 49.5 66 82.5 99 115.5 132 148.5] + 1200;
+pCcrM3 = [1314.983 1261.619 2128.518 1517 2385.477 2660.548 2990.276 7318.69 7300.154 4928.518];
+pCtrA3 = [4366.669 544.698 678.284 1565.962 3814.74 6857.891 7663.376 13218.74 12383.598 10310.083];
 
 %publication 4:
-tp4 = tp3
-pSciP4 = [8176.062 3082.648 894.456 248.12 248.12 248.12 248.12 855.77 1727.527 2709.941]
-pCtrA4 = [3465.406 1278.77 928.527 590.991 1960.355 3866.477 4892.77 5509.062 4213.941 4028.77]
+tp4 = [0 10 20 30 40 50 60 70 80 90 100] + 1200;
+pSciP4 = [8176.062 3082.648 894.456 248.12 248.12 248.12 248.12 855.77 1727.527 2709.941 2193.042];
+pCtrA4 = [3465.406 1278.77 928.527 590.991 1960.355 3866.477 4892.77 5509.062 4213.941 4028.77 2851.042];
 
+%publication 5:
+tp5 = [0 20 40 60 80 100 120 140] + 1200;
+pDnaA5 = [6925.376 14430.033 13141.619 4829.376 2257.719 2059.497 6289.912 9555.912];
+pGcrA5 = [0 8417.062 16478.891 14706.962 16155.255 9149.255 10833.548 12333.669];
+pCtrA5 = [8860.134 0 0 0 4023.77 12430.841 10419.669 7582.255];
+pCcrM5 = [0 0 0 0 166 3633.548 10993.962 13607.912];
+
+% Divkp data
+T = 150;        % period of Caulobacter
+t_d = rem(tout,T); % return remainder after division t/T
+DivKP = 0.004218 * t_d + 0.5779;
+pDivKP = [0.6311 0.7972 0.8103 0.916 1];
+tpDivKP = [20 40 60 80 100] + 1200;
+
+% cdG data:
+cdG= 0.3233 * sin(pi/75 * t_d + 0.3469) + 0.3363;
+cdG(cdG<0) = 0;
+tpcdG = [0    20    40    60    80   100   120] + 1200;
+pcdG = [0.2292 1.0000 0.5000 0.2833 0.2250 0.1625 0];
 
 %%
 % isolating the indices of the 8th cell cycle:
@@ -110,17 +134,21 @@ pCtrA4 = [3465.406 1278.77 928.527 590.991 1960.355 3866.477 4892.77 5509.062 42
 %% Plotting concentration of 5 main regulators mRNA against time
 
 % ccrM mRNA plot
+% scaling data:
+scaled_dCcrM = (dCcrM - min(dCcrM))/(max(dCcrM)-min(dCcrM))*(max(yout(a:b, mCcrM))-min(yout(a:b, mCcrM)))+min(yout(a:b, mCcrM));
+
 figure(1)
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, mCcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, mCcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'); %simulated levels
 hold on;
 box on;
 plot(t, dCcrM, 'ro', 'MarkerFaceColor', 'r')
+plot(t, scaled_dCcrM, 'b^', 'MarkerFaceColor', 'b')
 xlim([1200 1350])
-legend('Simulated ccrm','Experimental data', 'location', 'northeastoutside')
+legend('Simulated ccrm','Experimental Data', 'location', 'northeastoutside')
 title('\it{ccrM} (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized ccrM')
+ylabel('Scaled ccrM')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/ccrM.png','Resolution',300)
@@ -129,13 +157,14 @@ end
 % ccrM mRNA full plot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, mCcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, mCcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dCcrM, 'ro', 'MarkerFaceColor', 'r')
+plot(t, scaled_dCcrM, 'b^', 'MarkerFaceColor', 'b')
 title('\it{ccrM}')
 xlabel('Time (min)')
-ylabel('Normalized ccrM')
+ylabel('Scaled ccrM')
 f = gcf;
 xlim([0 1500])
 if save_figs == 1
@@ -143,17 +172,21 @@ if save_figs == 1
 end
 
 % dnaA mRNA plot
+% scaled data:
+scaled_dDnaA = (dDnaA - min(dDnaA))/(max(dDnaA)-min(dDnaA))*(max(yout(a:b, mDnaA))-min(yout(a:b, mDnaA)))+min(yout(a:b, mDnaA));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, mDnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+p1 = line(tout(a:b), yout(a:b, mDnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'); % simulated dnaA
 hold on;
 box on;
 plot(t, dDnaA, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulated dnaA','Experimental data', 'location', 'northeastoutside')
+plot(t, scaled_dDnaA, 'b^', 'MarkerFaceColor', 'b')
+legend('Simulated dnaA','Experimental Data', 'location', 'northeastoutside')
 title('\it{dnaA} (8th cell cycle)')
 xlabel('Time (min)')
 xlim([1200 1350])
-ylabel('Normalized dnaA')
+ylabel('Scaled dnaA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/dnaA.png','Resolution',300)
@@ -162,15 +195,16 @@ end
 % plot dnaA full time plot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, mDnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, mDnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dDnaA, 'ro', 'MarkerFaceColor', 'r')
+plot(t, scaled_dDnaA, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('\it{dnaA}')
 xlabel('Time (min)')
 xlim([0 1500])
-ylabel('Normalized dnaA')
+ylabel('Scaled dnaA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/dnaA_full.png','Resolution',300)
@@ -178,17 +212,21 @@ end
 
 
 % gcra mRNA plot
+% scaled data:
+scaled_dGcrA = (dGcrA - min(dGcrA))/(max(dGcrA)-min(dGcrA))*(max(yout(a:b, mGcrA))-min(yout(a:b, mGcrA)))+min(yout(a:b, mGcrA));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, mGcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, mGcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dGcrA, 'ro', 'MarkerFaceColor', 'r')
+plot(t, scaled_dGcrA, 'b^', 'MarkerFaceColor', 'b')
 xlim([1200 1350])
-legend('Simulated gcra','Experimental data', 'location', 'northeastoutside')
+legend('Simulated gcra','Experimental Data', 'location', 'northeastoutside')
 title('\it{gcrA} (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized gcrA')
+ylabel('Scaled gcrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/gcrA.png','Resolution',300)
@@ -197,31 +235,36 @@ end
 % gcra mRNA full time subplot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, mGcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, mGcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dGcrA, 'ro', 'MarkerFaceColor', 'r')
+plot(t, scaled_dGcrA, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('\it{gcrA}')
 xlabel('Time (min)')
-ylabel('Normalized gcrA')
+ylabel('Scaled gcrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/gcrA_full.png','Resolution',300)
 end
 
 % sciP mRNA plot
+% scaled data:
+scaled_dSciP = (dSciP - min(dSciP))/(max(dSciP)-min(dSciP))*(max(yout(a:b, mSciP))-min(yout(a:b, mSciP)))+min(yout(a:b, mSciP));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, mSciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, mSciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dSciP, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulated sciP','Experimental data', 'location', 'northeastoutside')
+plot(t, scaled_dSciP, 'b^', 'MarkerFaceColor', 'b')
+legend('Simulated sciP','Experimental Data', 'location', 'northeastoutside')
 xlim([1200 1350])
 title('\it{sciP} (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized sciP')
+ylabel('Scaled sciP')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/sciP.png','Resolution',300)
@@ -230,31 +273,36 @@ end
 % sciP mRNA full time subplot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, mSciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, mSciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dSciP, 'ro', 'MarkerFaceColor', 'r')
+plot(t, scaled_dSciP, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('\it{sciP}')
 xlabel('Time (min)')
-ylabel('Normalized sciP')
+ylabel('Scaled sciP')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/sciP_full.png','Resolution',300)
 end
 
-% ctra mRNA plot
+% ctrA mRNA plot
+%scaled data:
+scaled_dCtrA = (dCtrA - min(dCtrA))/(max(dCtrA)-min(dCtrA))*(max(yout(a:b, mCtrA))-min(yout(a:b, mCtrA)))+min(yout(a:b, mCtrA));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, mCtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, mCtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dCtrA, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulated ctrA','Experimental data', 'location', 'northeastoutside')
+plot(t, scaled_dCtrA, 'b^', 'MarkerFaceColor', 'b')
+legend('Simulated ctrA','Experimental Data', 'location', 'northeastoutside')
 xlim([1200 1350])
 title('\it{ctrA} (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized crrA')
+ylabel('Scaled crrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/ctrA.png','Resolution',300)
@@ -263,14 +311,15 @@ end
 % ctra mRNA full time plot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, mCtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, mCtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
 plot(t, dCtrA, 'ro', 'MarkerFaceColor', 'r')
+plot(t, scaled_dCtrA, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('\it{ctrA}')
 xlabel('Time (min)')
-ylabel('Normalized crrA')
+ylabel('Scaled crrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/ctrA_full.png','Resolution',300)
@@ -278,17 +327,21 @@ end
 
 %% Plotting concentration of 5 main regulator proteins (and protease complex) against time
 % Ccrm protein plot
+scaled_pCcrM3 = (pCcrM3 - min(pCcrM3))/(max(pCcrM3)-min(pCcrM3))*(max(yout(a:b, CcrM))-min(yout(a:b, CcrM)))+min(yout(a:b, CcrM));
+scaled_pCcrM5 = (pCcrM5 - min(pCcrM5))/(max(pCcrM5)-min(pCcrM5))*(max(yout(a:b, CcrM))-min(yout(a:b, CcrM)))+min(yout(a:b, CcrM));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, CcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, CcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tpCcrM, pCcrM, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Experiment', 'location', 'northeastoutside')
+plot(tp3, scaled_pCcrM3, 'ro', 'MarkerFaceColor', 'r')
+plot(tp5, scaled_pCcrM5, 'b^', 'MarkerFaceColor', 'b')
+legend('Simulated GcrA', 'Experimental Data 1', 'Experimental Data 2', 'location', 'northeastoutside')
 xlim([1200 1350])
 title('CcrM (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized CcrM')
+ylabel('Scaled CcrM')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/Ccrm_protein.png','Resolution',300)
@@ -297,31 +350,36 @@ end
 % Ccrm protein full time plot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, CcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, CcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tpCcrM, pCcrM, 'ro', 'MarkerFaceColor', 'r')
+plot(tp3, scaled_pCcrM3, 'ro', 'MarkerFaceColor', 'r')
+plot(tp5, scaled_pCcrM5, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('CcrM')
 xlabel('Time (min)')
-ylabel('Normalized CcrM')
+ylabel('Scaled CcrM')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/Ccrm_protein_full.png','Resolution',300)
 end
 
 % DnaA protein plot
+scaled_pDnaA1 = (pDnaA1 - min(pDnaA1))/(max(pDnaA1)-min(pDnaA1))*(max(yout(a:b, DnaA))-min(yout(a:b, DnaA)))+min(yout(a:b, DnaA));
+scaled_pDnaA5 = (pDnaA5 - min(pDnaA5))/(max(pDnaA5)-min(pDnaA5))*(max(yout(a:b, DnaA))-min(yout(a:b, DnaA)))+min(yout(a:b, DnaA));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, DnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, DnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp, pDnaA, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Experiment', 'location', 'northeastoutside')
+plot(tp1, scaled_pDnaA1, 'ro', 'MarkerFaceColor', 'r')
+plot(tp5, scaled_pDnaA5, 'b^', 'MarkerFaceColor', 'b')
+legend('Simulated GcrA', 'Experimental Data 1', 'Experimental Data 2', 'location', 'northeastoutside')
 xlim([1200 1350])
 title('DnaA (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized DnaA')
+ylabel('Scaled DnaA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/DnaA_protein.png','Resolution',300)
@@ -330,97 +388,112 @@ end
 % DnaA protein full time plot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, DnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, DnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp, pDnaA, 'ro', 'MarkerFaceColor', 'r')
+plot(tp1, scaled_pDnaA1, 'ro', 'MarkerFaceColor', 'r')
+plot(tp5, scaled_pDnaA5, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('DnaA')
 xlabel('Time (min)')
-ylabel('Normalized DnaA')
+ylabel('Scaled DnaA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/DnaA_protein_full.png','Resolution',300)
 end
 
 % GcrA protein plot
+scaled_pGcrA1 = (pGcrA1 - min(pGcrA1))/(max(pGcrA1)-min(pGcrA1))*(max(yout(a:b, GcrA))-min(yout(a:b, GcrA)))+min(yout(a:b, GcrA));
+scaled_pGcrA2 = (pGcrA2 - min(pGcrA2))/(max(pGcrA2)-min(pGcrA2))*(max(yout(a:b, GcrA))-min(yout(a:b, GcrA)))+min(yout(a:b, GcrA));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, GcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, GcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp, pGcrA, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Experiment', 'location', 'northeastoutside')
+plot(tp1, scaled_pGcrA1, 'ro', 'MarkerFaceColor', 'r')
+plot(tp2, scaled_pGcrA2, 'b^', 'MarkerFaceColor', 'b')
+legend('Simulated GcrA', 'Experimental Data 1', 'Experimental Data 2', 'location', 'northeastoutside')
 xlim([1200 1350])
 title('GcrA (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized GcrA')
+ylabel('Scaled GcrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/GcrA_protein.png','Resolution',300)
 end
 
-% GcrA protein full time subplot
+%GcrA protein full time subplot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, GcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, GcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp, pGcrA, 'ro', 'MarkerFaceColor', 'r')
+plot(tp1, scaled_pGcrA1, 'ro', 'MarkerFaceColor', 'r')
+plot(tp2, scaled_pGcrA2, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('GcrA')
 xlabel('Time (min)')
-ylabel('Normalized GcrA')
+ylabel('Scaled GcrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/GcrA_protein_full.png','Resolution',300)
 end
 
 % SciP protein plot
+%scaling data points:
+scaled_pSciP2 = (pSciP2 - min(pSciP2))/(max(pSciP2)-min(pSciP2))*(max(yout(a:b, SciP))-min(yout(a:b, SciP)))+min(yout(a:b, SciP));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, SciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, SciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp2, pSciP, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Experiment', 'location', 'northeastoutside')
+plot(tp2, scaled_pSciP2, 'ro', 'MarkerFaceColor', 'r')
+legend('Simulated SciP', 'Experimental Data 1', 'location', 'northeastoutside')
 xlim([1200 1350])
 title('SciP (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized SciP')
+ylabel('Scaled SciP')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/SciP_protein.png','Resolution',300)
 end
 
-% SciP protein full time plot
+%SciP protein full time plot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, SciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, SciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp2, pSciP, 'ro', 'MarkerFaceColor', 'r')
+plot(tp2, scaled_pSciP2, 'ro', 'MarkerFaceColor', 'r')
 xlim([0 1500])
 title('SciP')
 xlabel('Time (min)')
-ylabel('Normalized SciP')
+ylabel('Scaled SciP')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/SciP_protein_full.png','Resolution',300)
 end
 
 % CtrA protein plot
+%scaling data:
+scaled_pCtrA3 = (pCtrA3 - min(pCtrA3))/(max(pCtrA3)-min(pCtrA3))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA));
+scaled_pCtrA5 = (pCtrA5 - min(pCtrA5))/(max(pCtrA5)-min(pCtrA5))*(max(yout(a:b, CtrA))-min(yout(a:b, CtrA)))+min(yout(a:b, CtrA));
+
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b), yout(a:b, CtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, CtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp, pCtrA1, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Experiment', 'location', 'northeastoutside')
+plot(tp3, scaled_pCtrA3, 'ro', 'MarkerFaceColor', 'r')
+plot(tp5, scaled_pCtrA5, 'b^', 'MarkerFaceColor', 'b')
+
+legend('Simulated CtrA','Experimental Data 1','Experimental Data 2', 'location', 'northeastoutside')
 xlim([1200 1350])
 title('CtrA (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Normalized CtrA')
+ylabel('Scaled CtrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/CtrA_protein.png','Resolution',300)
@@ -429,14 +502,15 @@ end
 % CtrA protein full time plot
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout, yout(:, CtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout, yout(:, CtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tp, pCtrA1, 'ro', 'MarkerFaceColor', 'r')
+plot(tp3, scaled_pCtrA3, 'ro', 'MarkerFaceColor', 'r')
+plot(tp5, scaled_pCtrA5, 'b^', 'MarkerFaceColor', 'b')
 xlim([0 1500])
 title('CtrA')
 xlabel('Time (min)')
-ylabel('Normalized CtrA')
+ylabel('Scaled CtrA')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/CtrA_protein_full.png','Resolution',300)
@@ -445,7 +519,7 @@ end
 
 % Complex3 protease plot
 %figure(11)
-%p1 = line(tout, yout(:, RcdA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+%line(tout, yout(:, RcdA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 %hold on;
 % plot(tp, pCtrA1, 'r*-')
 %legend('Simulation')
@@ -466,7 +540,7 @@ figure()
 set(gcf,'Position',[100 100 500 500])
 box on;
 title('Probability of Hemimethylated States')
-p1 = line(tout(a:b), yout(a:b, hcori), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b), yout(a:b, hcori), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 p2 = line(tout(a:b), yout(a:b, hCcrM), 'Color', 'm', 'LineWidth', 2, 'Linestyle', '-');
 p3 = line(tout(a:b), yout(a:b, hCtrA), 'Color', 'b', 'LineWidth', 2, 'Linestyle', '--');
 h = legend('h_{Cori}', 'h_{ccrM}',  'h_{ctrA}', 'Location', 'North');
@@ -504,7 +578,7 @@ box on;
 plot(tout(a:b), yout(a:b, CPLX1), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([1200 1350]);
 xlabel('Time (min)')
-ylabel('Normalized Complex1')
+ylabel('Scaled Complex1')
 title('Complex 1 (8th cell cycle)')
 f = gcf;
 if save_figs == 1
@@ -519,7 +593,7 @@ box on;
 plot(tout, yout(:, CPLX1), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([0 1500]);
 xlabel('Time (min)')
-ylabel('Normalized Complex1')
+ylabel('Scaled Complex1')
 title('Complex 1')
 f = gcf;
 if save_figs == 1
@@ -534,7 +608,7 @@ box on;
 plot(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([1200 1350])
 xlabel('Time (min)')
-ylabel('Normalized CpdRP')
+ylabel('Scaled CpdRP')
 title('CpdRP (8th cell cycle)')
 f = gcf;
 if save_figs == 1
@@ -549,7 +623,7 @@ box on;
 plot(tout, yout(:, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([0 1500])
 xlabel('Time (min)')
-ylabel('Normalized CpdRP')
+ylabel('Scaled CpdRP')
 title('CpdRP')
 f = gcf;
 if save_figs == 1
@@ -564,7 +638,7 @@ box on;
 plot(tout(a:b), yout(a:b, CpdRP) + yout(a:b, CpdR), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([1200 1350])
 xlabel('Time (min)')
-ylabel('Normalized CpdRP')
+ylabel('Scaled CpdRP')
 title('Total CpdR (CpdR + CpdRP) (8th cell cycle)')
 f = gcf;
 if save_figs == 1
@@ -579,7 +653,7 @@ box on;
 plot(tout, yout(:, CpdRP) + yout(:, CpdR), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([0 1500])
 xlabel('Time (min)')
-ylabel('Normalized CpdRP')
+ylabel('Scaled CpdRP')
 title('Total CpdR (CpdR + CpdRP)')
 f = gcf;
 if save_figs == 1
@@ -593,12 +667,30 @@ hold on;
 box on;
 plot(tout(a:b), yout(a:b, CPLX2), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlabel('Time (min)')
-ylabel('Normalized Complex2')
+ylabel('Scaled Complex2')
 title('Complex 2 (8th cell cycle)')
 xlim([1200 1350])
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/Complex2.png','Resolution',300)
+end
+
+scaled_pCpdRP = (pCpdRP - min(pCpdRP))/(max(pCpdRP)-min(pCpdRP))*(max(yout(a:b, CpdRP))-min(yout(a:b, CpdRP)))+min(yout(a:b, CpdRP));
+
+figure()
+set(gcf,'Position',[100 100 500 500])
+line(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+hold on;
+box on;
+plot(tpCpdRP, pCpdRP, 'ro', 'MarkerFaceColor', 'r')
+legend('Simulated CpdR~P','Experimental Data','location', 'northeastoutside')
+xlim([1200 1350])
+title('CpdR~P (8th cell cycle)')
+xlabel('Time (min)')
+ylabel('Scaled CpdR~P')
+f = gcf;
+if save_figs == 1
+    exportgraphics(f,'./resources/generated_plots/CpdRP_protein.png','Resolution',300)
 end
 
 % plot Complex 2 full time
@@ -608,7 +700,7 @@ hold on;
 box on;
 plot(tout, yout(:, CPLX2), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlabel('Time (min)')
-ylabel('Normalized Complex2')
+ylabel('Scaled Complex2')
 title('Complex 2')
 xlim([0 1500])
 f = gcf;
@@ -623,7 +715,7 @@ hold on;
 box on;
 plot(tout(a:b), yout(a:b,CPLX3), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlabel('Time (min)')
-ylabel('Normalized Complex3')
+ylabel('Scaled Complex3')
 title('Complex 3 (8th cell cycle)')
 xlim([1200 1350])
 f = gcf;
@@ -639,7 +731,7 @@ hold on;
 box on;
 plot(tout, yout(:,CPLX3), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlabel('Time (min)')
-ylabel('Normalized Complex3')
+ylabel('Scaled Complex3')
 title('Complex 3')
 xlim([0 1500])
 f = gcf;
@@ -667,11 +759,11 @@ cpdr = (cpdr - min(cpdr))/(max(cpdr)-min(cpdr))*(max(CPDR)-min(CPDR))+min(CPDR);
 
 % cpdr=cpdr/max(cpdr);
 
-scatter(time+10,cpdr,'ro-','MarkerFaceColor','r')  % plotting experimental cpdr points
+plot(time+10,cpdr,'ro','MarkerFaceColor','r')  % plotting experimental cpdr points
 
 xlim([1200 1350])
 xlabel('Time (min)')
-ylabel('Normalized CpdR')
+ylabel('Scaled CpdR')
 legend('simulated CpdR','Original data', 'location', 'northeastoutside')
 hold on;
 f = gcf;
@@ -695,7 +787,7 @@ cpdr = (cpdr - min(cpdr))/(max(cpdr)-min(cpdr))*(max(CPDR(a:b))-min(CPDR(a:b)))+
 
 scatter(time+1210, cpdr, 'ro','MarkerFaceColor','r')  % plotting experimental cpdr points
 xlabel('Time (min)')
-ylabel('Normalized CpdR')
+ylabel('Scaled CpdR')
 hold on;
 f = gcf;
 if save_figs == 1
@@ -710,68 +802,51 @@ hold on;
 box on;
 RCDA = yout(:, RcdA);
 RCDA = RCDA(a:b);                    % gathering relevant simulated CpdR data
-% RCDA=RCDA/max(RCDA);
-%DIF = max(RCDA) - min(RCDA);
-%RCDA = (RCDA-min(RCDA))/DIF;         % plotting simulated RcdA data
-
 plot(tout(a:b), RCDA, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')
 xlim([1200 1350])
-time2=[0,9.4,26.7,44.8,62.1176,79.8118,97.5059,115.2,133.271,151.341] + 1200;
-time3 = [0 20 40 60 80 100 120 140] + 1200;
 
-rcda=[0.0000136,0.093,0.984,1.00163,0.528269,0.517348,0.517987,0.431921,0.738932,0.271377];
-rcda2 = [1869.912 14329.841 14835.619 7990.012 7781.669 7777.083 6608.083 11151.669];
 rcda = (rcda - min(rcda))/(max(rcda)-min(rcda))*(max(RCDA)-min(RCDA))+min(RCDA);
-rcda2 = (rcda2 - min(rcda2))/(max(rcda2)-min(rcda2))*(max(RCDA)-min(RCDA))+min(RCDA);
-scatter(time2, rcda, 'ro-', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
-plot(time3, rcda2, 'go-', 'MarkerFaceColor', 'g')  % plotting experimental rcda points
+
+plot(tpRcdA, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
 xlabel('Time (min)')
-ylabel('Normalized RcdA')
-legend('simulated RcdA', 'original data', 'New experimental data', 'location', 'northeastoutside')
+ylabel('Scaled RcdA')
+legend('Simulated RcdA', 'Experimental Data', 'location', 'northeastoutside')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/RcdA.png','Resolution',300)
 end
 
 % plot RcdA full time
-figure()
-set(gcf,'Position',[100 100 500 500])
-title('RcdA')
-hold on;
-box on;
-RCDA = yout(:, RcdA);
-plot(tout, RCDA, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')
-xlim([0 1500])
+%figure()
+%set(gcf,'Position',[100 100 500 500])
+%title('RcdA')
+%hold on;
+%box on;
+%RCDA = yout(:, RcdA);
+%plot(tout, RCDA, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')
+%xlim([0 1500])
 
-scatter(time2 + 1200, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
-xlabel('Time (min)')
-ylabel('Normalized RcdA')
-f = gcf;
-if save_figs == 1
-    exportgraphics(f,'./resources/generated_plots/RcdA_full.png','Resolution',300)
-end
+%scatter(time2 + 1200, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
+%xlabel('Time (min)')
+%ylabel('Scaled RcdA')
+%f = gcf;
+%if save_figs == 1
+%    exportgraphics(f,'./resources/generated_plots/RcdA_full.png','Resolution',300)
+%end
 
 %% plotting cdG and DivK~P
-T = 150;        % period of Caulobacter
-t_d = rem(tout,T); % return remainder after division t/T
-
 % cdG plot
-% data
-cdG= 0.3233 * sin(pi/75 * t_d + 0.3469) + 0.3363;
-cdG(cdG<0) = 0;
-time = [0    20    40    60    80   100   120]+1200;
-cdG_levels = [0.2292 1.0000 0.5000 0.2833 0.2250 0.1625 0];
 
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b) , cdG(a:b), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b) , cdG(a:b), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(time, cdG_levels, 'ro', 'MarkerFaceColor', 'r')
+plot(tpcdG, pcdG, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
 title('cdG (8th Cell Cycle)')
 xlabel('Time (min)')
-ylabel('Normalized cdG')
+ylabel('Scaled cdG')
 legend('Simulated cdG', 'Scaled Experimental Data', 'location', 'northeastoutside')
 f = gcf;
 if save_figs == 1
@@ -779,21 +854,17 @@ if save_figs == 1
 end
 
 % DivKP plot
-% data
-DivKP = 0.004218 * t_d + 0.5779;
-DivKP_levels = [0.6311 0.7972 0.8103 0.916 1]
-time = [20 40 60 80 100] + 1200;
 
 figure()
 set(gcf,'Position',[100 100 500 500])
-p1 = line(tout(a:b) , DivKP(a:b), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+line(tout(a:b) , DivKP(a:b), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(time, DivKP_levels, 'ro', 'MarkerFaceColor', 'r')
+plot(tpDivKP, pDivKP, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
 title('DivK~P (8th Cell Cycle)')
 xlabel('Time (min)')
-ylabel('Normalized DivK~P')
+ylabel('Scaled DivK~P')
 legend('Simulated DivK~P', 'Scaled Experimental Data', 'location', 'northeastoutside')
 f = gcf;
 if save_figs == 1
@@ -822,7 +893,7 @@ end
 % hold on;
 
 % figure(55)
-% p1 = line(tout, yout(:, Elong), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+% line(tout, yout(:, Elong), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 % axis([0 420 0 0.1])
 
 % figure(66)
@@ -856,7 +927,7 @@ end
 % hold on;
 % ybar = zeros(size(tout));
 % ybar(yout(:, DnaA)>mean(yout(:, DnaA)))=mean(yout(:, DnaA));
-% p1 = scatter(tout, ybar, 'b.', 'LineWidth', 4);
+% scatter(tout, ybar, 'b.', 'LineWidth', 4);
 % plot(tout, yout(:,DnaA), 'k')
 % ('DnaA')
 % legend('Experiment','Simulation','Curve')
@@ -874,7 +945,7 @@ end
 % hold on;
 % ybar = zeros(size(tout));
 % ybar(yout(:, GcrA)>mean(yout(:, GcrA)))=mean(yout(:, GcrA));
-% p1 = scatter(tout, ybar, 'b.', 'LineWidth', 4);
+% scatter(tout, ybar, 'b.', 'LineWidth', 4);
 % plot(tout, yout(:,GcrA), 'k')
 % title('GcrA')
 % legend('Experiment','Simulation','Curve')
@@ -892,7 +963,7 @@ end
 % hold on;
 % ybar = zeros(size(tout));
 % ybar(yout(:, SciP)>mean(yout(:, SciP)))=mean(yout(:, SciP));
-% p1 = scatter(tout, ybar, 'b.', 'LineWidth', 4);
+% scatter(tout, ybar, 'b.', 'LineWidth', 4);
 % plot(tout, yout(:,SciP), 'k')
 % title('SciP')
 % legend('Experiment','Simulation','Curve')
@@ -910,7 +981,7 @@ end
 % hold on;
 % ybar = zeros(size(tout));
 % ybar(yout(:, CtrA)>mean(yout(:, CtrA)))=mean(yout(:, CtrA));
-% p1 = scatter(tout, ybar, 'b.', 'LineWidth', 4);
+% scatter(tout, ybar, 'b.', 'LineWidth', 4);
 % plot(tout, yout(:,CtrA), 'k')
 % title('CtrA')
 % legend('Experiment','Simulation','Curve')

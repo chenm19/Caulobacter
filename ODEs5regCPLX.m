@@ -143,9 +143,10 @@ dydt(mCtrA) = (ksmCtrA*y(CtrA)^naCtrACtrA/(JaCtrACtrA^naCtrACtrA + y(CtrA)^naCtr
               *y(hCtrA) - kdmCtrA*y(mCtrA) ;
 
 % CcrM DnaA GcrA SciP CtrA CtrA
+scale_factor = 5;
 dydt(CcrM) = ksCcrM*y(mCcrM) - kdCcrM*y(CcrM);
 dydt(I) = ksI*y(mDnaA) - kdI*y(I);
-dydt(DnaA) = ksDna*y(I) - kdDna*y(DnaA);
+dydt(DnaA) = scale_factor*(ksDna*y(I) - kdDna*y(DnaA));
 
 dydt(II) = ksII*y(mGcrA) - kdII*y(II);
 dydt(GcrA) = ksGcrA*y(II) - kdGcrA*y(GcrA);
