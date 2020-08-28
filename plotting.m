@@ -3,7 +3,7 @@ close all; clf;
 
 load('output.mat')
 
-save_figs = 0;  %switch for saving: 1 = save; 0 = no save
+save_figs = 1;  %switch for saving: 1 = save; 0 = no save
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Five transcriptional regulators
@@ -600,19 +600,24 @@ if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/Complex1_full.png','Resolution',300)
 end
 
-% plot CpdRP
-figure();
+%plot clpdrp
+%scaled data:
+scaled_pCpdRP = (pCpdRP - min(pCpdRP))/(max(pCpdRP)-min(pCpdRP))*(max(yout(a:b, CpdRP))-min(yout(a:b, CpdRP)))+min(yout(a:b, CpdRP));
+
+figure()
 set(gcf,'Position',[100 100 500 500])
+line(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+plot(tpCpdRP, scaled_pCpdRP, 'ro', 'MarkerFaceColor', 'r')
+legend('Simulated CpdR~P','Experimental Data','location', 'northeastoutside')
 xlim([1200 1350])
+title('CpdR~P (8th cell cycle)')
 xlabel('Time (min)')
-ylabel('Scaled CpdRP')
-title('CpdRP (8th cell cycle)')
+ylabel('Scaled CpdR~P')
 f = gcf;
 if save_figs == 1
-    exportgraphics(f,'./resources/generated_plots/CpdRP.png','Resolution',300)
+    exportgraphics(f,'./resources/generated_plots/CpdRP_protein.png','Resolution',300)
 end
 
 % plot CpdRP full time
@@ -621,13 +626,14 @@ set(gcf,'Position',[100 100 500 500])
 hold on;
 box on;
 plot(tout, yout(:, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+plot(tpCpdRP, scaled_pCpdRP, 'ro', 'MarkerFaceColor', 'r');
 xlim([0 1500])
 xlabel('Time (min)')
 ylabel('Scaled CpdRP')
 title('CpdRP')
 f = gcf;
 if save_figs == 1
-    exportgraphics(f,'./resources/generated_plots/CpdRP_full.png','Resolution',300)
+    exportgraphics(f,'./resources/generated_plots/CpdRP_protein_full.png','Resolution',300)
 end
 
 % plot total CpdR + CpdRP
@@ -675,23 +681,6 @@ if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/Complex2.png','Resolution',300)
 end
 
-scaled_pCpdRP = (pCpdRP - min(pCpdRP))/(max(pCpdRP)-min(pCpdRP))*(max(yout(a:b, CpdRP))-min(yout(a:b, CpdRP)))+min(yout(a:b, CpdRP));
-
-figure()
-set(gcf,'Position',[100 100 500 500])
-line(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
-hold on;
-box on;
-plot(tpCpdRP, pCpdRP, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulated CpdR~P','Experimental Data','location', 'northeastoutside')
-xlim([1200 1350])
-title('CpdR~P (8th cell cycle)')
-xlabel('Time (min)')
-ylabel('Scaled CpdR~P')
-f = gcf;
-if save_figs == 1
-    exportgraphics(f,'./resources/generated_plots/CpdRP_protein.png','Resolution',300)
-end
 
 % plot Complex 2 full time
 figure();
@@ -836,13 +825,15 @@ end
 
 %% plotting cdG and DivK~P
 % cdG plot
+% scaling data:
+scaled_pcdG = (pcdG - min(pcdG))/(max(pcdG)-min(cdG(a:b)))*(max(cdG(a:b))-min(cdG(a:b)))+min(cdG(a:b));
 
 figure()
 set(gcf,'Position',[100 100 500 500])
 line(tout(a:b) , cdG(a:b), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tpcdG, pcdG, 'ro', 'MarkerFaceColor', 'r')
+plot(tpcdG, scaled_pcdG, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
 title('cdG (8th Cell Cycle)')
 xlabel('Time (min)')
@@ -853,14 +844,32 @@ if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/cdG.png','Resolution',300)
 end
 
+% plotting cdG full time:
+figure()
+set(gcf,'Position',[100 100 500 500])
+line(tout , cdG, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+hold on;
+box on;
+plot(tpcdG, scaled_pcdG, 'ro', 'MarkerFaceColor', 'r')
+xlim([0 1500])
+title('cdG')
+xlabel('Time (min)')
+ylabel('Scaled cdG')
+f = gcf;
+if save_figs == 1
+    exportgraphics(f,'./resources/generated_plots/cdG_full.png','Resolution',300)
+end
+
 % DivKP plot
+% scaling data:
+scaled_pDivKP = (pDivKP - min(pDivKP))/(max(pDivKP)-min(DivKP(a:b)))*(max(DivKP(a:b))-min(DivKP(a:b)))+min(DivKP(a:b));
 
 figure()
 set(gcf,'Position',[100 100 500 500])
 line(tout(a:b) , DivKP(a:b), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tpDivKP, pDivKP, 'ro', 'MarkerFaceColor', 'r')
+plot(tpDivKP, scaled_pDivKP, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
 title('DivK~P (8th Cell Cycle)')
 xlabel('Time (min)')
@@ -869,6 +878,24 @@ legend('Simulated DivK~P', 'Scaled Experimental Data', 'location', 'northeastout
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/DivKP.png','Resolution',300)
+end
+
+% plotting DivK~P full time:
+
+figure()
+set(gcf,'Position',[100 100 500 500])
+line(tout , DivKP, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+hold on;
+box on;
+plot(tpDivKP, scaled_pDivKP, 'ro', 'MarkerFaceColor', 'r')
+xlim([0 1500])
+title('DivK~P')
+xlabel('Time (min)')
+ylabel('Scaled DivK~P')
+legend('Simulated DivK~P', 'Scaled Experimental Data', 'location', 'northeastoutside')
+f = gcf;
+if save_figs == 1
+    exportgraphics(f,'./resources/generated_plots/DivKP_full.png','Resolution',300)
 end
 %% Old plotting code
 
