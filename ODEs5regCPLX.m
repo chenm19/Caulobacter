@@ -143,7 +143,7 @@ dydt(mCtrA) = (ksmCtrA*y(CtrA)^naCtrACtrA/(JaCtrACtrA^naCtrACtrA + y(CtrA)^naCtr
               *y(hCtrA) - kdmCtrA*y(mCtrA) ;
 
 % CcrM DnaA GcrA SciP CtrA CtrA
-scale_factor = 5;
+scale_factor = 1;
 dydt(CcrM) = ksCcrM*y(mCcrM) - kdCcrM*y(CcrM);
 dydt(I) = ksI*y(mDnaA) - kdI*y(I);
 dydt(DnaA) = scale_factor*(ksDna*y(I) - kdDna*y(DnaA));
@@ -195,15 +195,17 @@ p.rcda=q1*t_d.^4 + q2*t_d.^3 + q3*t_d.^2 + q4*t_d+ q5;
 cdG= 0.3233 *sin(pi/75*t_d+0.3469 )+ 0.3363;
 cdG(cdG<0)=0;
 %%
+%p.divkp/(p.divkp+p.J2) this term was removed from CpdrP and CpdR
+%8/30/2020.
 
 dydt(CPLX1)=p.k1_pos*p.clpxp*y(CpdR)-p.k1_neg*y(CPLX1)...
     -p.k3_pos*y(CPLX1)*y(RcdA)+p.k3_neg*y(CPLX2);
 
 dydt(CpdR)=p.ks_cpdr-p.kd_cpdr*y(CpdR)*y(CPLX1)/(y(CPLX1)+p.J1)...
     +p.k1_neg*y(CPLX1)-p.k1_pos*p.clpxp*y(CpdR)...
-    +p.k2_pos*y(CpdRP)*p.divkp/(p.divkp+p.J2)-p.k2_neg*y(CpdR);
+    +p.k2_pos*y(CpdRP)-p.k2_neg*y(CpdR);
 
-dydt(CpdRP)=p.k2_neg*y(CpdR)-p.k2_pos*y(CpdRP)*p.divkp/(p.divkp+p.J2);
+dydt(CpdRP)=p.k2_neg*y(CpdR)-p.k2_pos*y(CpdRP);
 
 
 dydt(CPLX2)=p.k3_pos*y(CPLX1)*y(RcdA)-p.k3_neg*y(CPLX2)+p.k5_neg*y(CPLX3)-p.k5_pos*cdG^2*y(CPLX2);
