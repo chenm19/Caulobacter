@@ -9,7 +9,7 @@ param_Complex();
 
 % [T,Y]=ode15s('odes_Complex',[0,300],[0,1,1]);%Complex1, CpdR, CpdRP;
 % [T,Y]=ode15s('odes_Complex',[0,900],[0.1,4,0,0,2]);%Complex2, RcdA
-[T,Y]=ode15s('odes_Complex',[0,1500],[0.1,4,0.1,0,2,0]);%Complex3
+[T,Y]=ode15s('odes_Complex',[0,1500],[0.1,3,1,0,2,0]);%Complex3
 
 figure();
 hold on; 

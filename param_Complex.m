@@ -5,14 +5,14 @@ global p
 % else p.growth = 0.0055;
 % end
 %%extra constant or function
-p.clpxp=0.01;%um
+p.clpxp=0.1;%um
 
 
 %% Synthesis and degradation rate constants [units --> 1/min]
-p.k1_pos=0.2; %forward reaction: ClpXP+CpdR ->Complex1
-p.k1_neg=0.1;%20; %backward reaction: Complex1->ClpXP+CpdR
-p.ks_cpdr=10; %0.02;
-p.kd_cpdr=0.5;%0.01;
+p.k1_pos=1;%0.2; %forward reaction: ClpXP+CpdR ->Complex1
+p.k1_neg=1;%20; %backward reaction: Complex1->ClpXP+CpdR
+p.ks_cpdr=0.5;%10; %0.02;
+p.kd_cpdr=1;%0.5;%0.01;
 %%phosporylation
 p.k2_pos=3;%2;%0.5;%%%%sharpness of CpdRP%%%%
 p.k2_neg=0.5;%15;%0.8;%based on ratio of p/unp

@@ -152,9 +152,9 @@ figure(1)
 line(tout(a:b), yout(a:b, mCcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'); %simulated levels
 hold on;
 box on;
-plot(t, scaled_dCcrM, 'b^', 'MarkerFaceColor', 'b')
+plot(t, scaled_dCcrM, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
-legend('Simulation','Empiracle')
+legend('Simulation','Empiracle', 'location', 'northwest')
 title('\it{ccrM}')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
@@ -186,10 +186,10 @@ scaled_dDnaA = (dDnaA - min(dDnaA))/(max(dDnaA)-min(dDnaA))*(max(yout(a:b, mDnaA
 
 figure()
  
-p1 = line(tout(a:b), yout(a:b, mDnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'); % simulated dnaA
+line(tout(a:b), yout(a:b, mDnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'); % simulated dnaA
 hold on;
 box on;
-plot(t, scaled_dDnaA, 'b^', 'MarkerFaceColor', 'b')
+plot(t, scaled_dDnaA, 'ro', 'MarkerFaceColor', 'r')
 legend('Simulation','Empiracle');
 title('\it{dnaA}')
 xlabel('Time (min)')
@@ -228,7 +228,7 @@ figure()
 line(tout(a:b), yout(a:b, mGcrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(t, scaled_dGcrA, 'b^', 'MarkerFaceColor', 'b')
+plot(t, scaled_dGcrA, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
 legend('Simulation','Empiracle')
 title('\it{gcrA}')
@@ -265,7 +265,7 @@ figure()
 line(tout(a:b), yout(a:b, mSciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(t, scaled_dSciP, 'b^', 'MarkerFaceColor', 'b')
+plot(t, scaled_dSciP, 'ro', 'MarkerFaceColor', 'r')
 legend('Simulation','Empiracle')
 xlim([1200 1350])
 title('\it{sciP}')
@@ -303,7 +303,7 @@ line(tout(a:b), yout(a:b, mCtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'
 hold on;
 box on;
 plot(t, scaled_dCtrA, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Empiracle')
+legend('Simulation','Empiracle', 'location', 'northwest')
 xlim([1200 1350])
 title('\it{ctrA}')
 xlabel('Time (min)')
@@ -494,7 +494,7 @@ box on;
 plot(tp3, scaled_pCtrA3, 'ro', 'MarkerFaceColor', 'r')
 plot(tp5, scaled_pCtrA5, 'b^', 'MarkerFaceColor', 'b')
 
-legend('Simulation','Empiracle Source 1', 'Empiracle Source 2')
+legend('Simulation','Empiracle Source 1', 'Empiracle Source 2', 'location', 'northwest')
 xlim([1200 1350])
 title('CtrA')
 xlabel('Time (min)')
@@ -577,15 +577,10 @@ end
 %%  Protein degredation (model II) figures 
 % plot Complex 1
 figure();
-
-%normalizing data:
-CPLX1 = yout(:, CPLX1);
-CPLX1 = CPLX1(a:b);  
-DIF = max(CPLX1) - min(CPLX1);
-CPLX1 = (CPLX1-min(CPLX1))/DIF;
+set(gcf,'Position',[100 100 500 500])
 hold on; 
 box on;
-plot(tout(a:b), CPLX1, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+plot(tout(a:b), yout(a:b, CPLX1), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([1200 1350]);
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
@@ -595,9 +590,9 @@ if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/Complex1.eps','Resolution',300)
 end
 
-% plot Complex 1 full time
+% % plot Complex 1 full time
 % figure();
-%  
+% set(gcf,'Position',[100 100 500 500])
 % hold on; 
 % box on;
 % plot(tout, yout(:, CPLX1), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -612,23 +607,14 @@ end
 
 %plot clpdrp
 %scaled data:
-%scaled_pCpdRP = (pCpdRP - min(pCpdRP))/(max(pCpdRP)-min(pCpdRP))*(max(yout(a:b, CpdRP))-min(yout(a:b, CpdRP)))+min(yout(a:b, CpdRP));
+scaled_pCpdRP = (pCpdRP - min(pCpdRP))/(max(pCpdRP)-min(pCpdRP))*(max(yout(a:b, CpdRP))-min(yout(a:b, CpdRP)))+min(yout(a:b, CpdRP));
 
 figure()
-
-%normalizing data:
-CPDRP = yout(:, CpdRP);
-CPDRP = CPDRP(a:b);  
-DIF = max(CPDRP) - min(CPDRP);
-CPDRP = (CPDRP-min(CPDRP))/DIF;
-
-dif = max(pCpdRP) - min(pCpdRP);
-pCpdRP = (pCpdRP-min(pCpdRP))/dif;
- 
-line(tout(a:b), CPDRP, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+set(gcf,'Position',[100 100 500 500])
+line(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
-plot(tpCpdRP, pCpdRP, 'ro', 'MarkerFaceColor', 'r')
+plot(tpCpdRP, scaled_pCpdRP, 'ro', 'MarkerFaceColor', 'r')
 legend('Simulation','Empiracle')
 xlim([1200 1350])
 title('CpdR~P')
@@ -639,9 +625,9 @@ if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/CpdRP_protein.eps','Resolution',300)
 end
 
-% plot CpdRP full time
+% % plot CpdRP full time
 % figure();
-%  
+% set(gcf,'Position',[100 100 500 500])
 % hold on;
 % box on;
 % plot(tout, yout(:, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -657,16 +643,10 @@ end
 
 % plot total CpdR + CpdRP
 figure();
-
-%normalizing data:
-total_CPDR = yout(:, CpdR) + yout(:, CpdRP);
-total_CPDR = total_CPDR(a:b);  
-DIF = max(total_CPDR) - min(total_CPDR);
-total_CPDR = (total_CPDR-min(total_CPDR))/DIF;
-
+set(gcf,'Position',[100 100 500 500])
 hold on;
 box on;
-plot(tout(a:b), total_CPDR, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+plot(tout(a:b), yout(a:b, CpdRP) + yout(a:b, CpdR), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlim([1200 1350])
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
@@ -676,9 +656,9 @@ if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/CpdRP.eps','Resolution',300)
 end
 
-% plot total CpdR + CpdRP full time
+% % plot total CpdR + CpdRP full time
 % figure();
-%  
+% set(gcf,'Position',[100 100 500 500])
 % hold on;
 % box on;
 % plot(tout, yout(:, CpdRP) + yout(:, CpdR), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -693,16 +673,10 @@ end
 
 % plot Complex 2
 figure();
-
-%normalizing data:
-CPLX2 = yout(:, CPLX2);
-CPLX2 = CPLX2(a:b);  
-DIF = max(CPLX2) - min(CPLX2);
-CPLX2 = (CPLX2-min(CPLX2))/DIF;
-
+set(gcf,'Position',[100 100 500 500])
 hold on;
 box on;
-plot(tout(a:b), CPLX2, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+plot(tout(a:b), yout(a:b, CPLX2), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
 title('Complex 2')
@@ -713,9 +687,9 @@ if save_figs == 1
 end
 
 
-% plot Complex 2 full time
+% % plot Complex 2 full time
 % figure();
-%  
+% set(gcf,'Position',[100 100 500 500])
 % hold on;
 % box on;
 % plot(tout, yout(:, CPLX2), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -730,16 +704,10 @@ end
 
 % plot Complex 3
 figure();
-
-%normalizing data:
-CPLX3 = yout(:, CPLX3);
-CPLX3 = CPLX3(a:b);  
-DIF = max(CPLX3) - min(CPLX3);
-CPLX3 = (CPLX3-min(CPLX3))/DIF;
- 
+set(gcf,'Position',[100 100 500 500])
 hold on;
 box on;
-plot(tout(a:b), CPLX3, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
+plot(tout(a:b), yout(a:b,CPLX3), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
 title('Complex 3')
@@ -752,7 +720,7 @@ end
 
 % plot Complex 3 full time
 % figure();
-%  
+% set(gcf,'Position',[100 100 500 500])
 % hold on;
 % box on;
 % plot(tout, yout(:,CPLX3), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -768,25 +736,22 @@ end
 % plot CpdR
 time=[0,20,40,60,80,100,120] + 1200;
 figure()
-
-%normalizing data:
-CPDR = yout(:, CpdR);
-CPDR = CPDR(a:b);  
-DIF = max(CPDR) - min(CPDR);
-CPDR = (CPDR-min(CPDR))/DIF;
-
+set(gcf,'Position',[100 100 500 500])
 title('CpdR')
 hold on;
 box on;
+CPDR = yout(:, CpdR);                                   
+CPDR = CPDR(a:b);                  % gathering relevant simulated CpdR data
+% CPDR=CPDR/max(CPDR);
+%DIF = max(CPDR) - min(CPDR);
+%CPDR = (CPDR-min(CPDR))/DIF;
 
 plot(tout(a:b), CPDR, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')      % plotting simulated CpdR
 % cpdr=[21001.196,20613.125,13581.933,10400.397,10563.811,13216.569,20216.276];
 cpdr=[27532.359,40939.622,20027.844,10400.397,10563.811,13216.569,20216.276];
-%cpdr = (cpdr - min(cpdr))/(max(cpdr)-min(cpdr))*(max(CPDR)-min(CPDR))+min(CPDR);
+cpdr = (cpdr - min(cpdr))/(max(cpdr)-min(cpdr))*(max(CPDR)-min(CPDR))+min(CPDR);
 
-%normalizing data:
-dif=max(cpdr) - min(cpdr);
-cpdr=(cpdr-min(cpdr))/dif;
+% cpdr=cpdr/max(cpdr);
 
 plot(time+10,cpdr,'ro','MarkerFaceColor','r')  % plotting experimental cpdr points
 
@@ -800,10 +765,10 @@ if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/CpdR.eps','Resolution',300)
 end
 
-% plot CpdR full time
+% % plot CpdR full time
 % time=[0,20,40,60,80,100,120];
 % figure()
-%  
+% set(gcf,'Position',[100 100 500 500])
 % title('CpdR')
 % hold on;
 % box on;
@@ -825,22 +790,16 @@ end
 
 % plot RcdA
 figure()
-
-%normalizing data:
-RCDA = yout(:, RcdA);
-RCDA = RCDA(a:b);                    % gathering relevant simulated CpdR data
-DIF = max(RCDA) - min(RCDA);
-RCDA = (RCDA-min(RCDA))/DIF;
- 
+set(gcf,'Position',[100 100 500 500])
 title('RcdA')
 hold on;
 box on;
+RCDA = yout(:, RcdA);
+RCDA = RCDA(a:b);                    % gathering relevant simulated CpdR data
 plot(tout(a:b), RCDA, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')
 xlim([1200 1350])
 
-%rcda = (rcda - min(rcda))/(max(rcda)-min(rcda))*(max(RCDA)-min(RCDA))+min(RCDA);
-dif=max(rcda) - min(rcda);
-rcda=(rcda-min(rcda))/dif;
+rcda = (rcda - min(rcda))/(max(rcda)-min(rcda))*(max(RCDA)-min(RCDA))+min(RCDA);
 
 plot(tpRcdA, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
 xlabel('Time (min)')
@@ -850,24 +809,6 @@ f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/RcdA.eps','Resolution',300)
 end
-
-% plot RcdA full time
-%figure()
-% 
-%title('RcdA')
-%hold on;
-%box on;
-%RCDA = yout(:, RcdA);
-%plot(tout, RCDA, 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')
-%xlim([0 1500])
-
-%scatter(time2 + 1200, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
-%xlabel('Time (min)')
-%ylabel('Scaled RcdA')
-%f = gcf;
-%if save_figs == 1
-%    exportgraphics(f,'./resources/generated_plots/RcdA_full.eps','Resolution',300)
-%end
 
 %% plotting cdG and DivK~P
 % cdG plot
@@ -920,7 +861,7 @@ xlim([1200 1350])
 title('DivK~P')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation', 'Empiracle')
+legend('Simulation', 'Empiracle', 'location', 'northwest')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/DivKP.eps','Resolution',300)
