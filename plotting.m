@@ -418,7 +418,7 @@ hold on;
 box on;
 plot(tp1, scaled_pGcrA1, 'ro', 'MarkerFaceColor', 'r')
 plot(tp2, scaled_pGcrA2, 'b^', 'MarkerFaceColor', 'b')
-legend('Simulation','Empiracle Source 1', 'Empiracle Source 2')
+legend('Simulation','Empiracle Source 1', 'Empiracle Source 2', 'location', 'southeast')
 xlim([1200 1350])
 title('GcrA')
 xlabel('Time (min)')
