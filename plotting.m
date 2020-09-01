@@ -563,7 +563,7 @@ box on;
 p2 = line(tout(a:b), yout(a:b, Elong), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 p3 = line(tout(a:b), yout(a:b, DNA), 'Color', 'm', 'LineWidth', 2, 'Linestyle', '-');
 p4 = line(tout(a:b), yout(a:b, Count), 'Color', 'b', 'LineWidth', 2, 'Linestyle', '--');
-% p5 = line(tout, yout(:, Ini), 'Color', 'r', 'LineWidth', 2, 'Linestyle', '-');
+p5 = line(tout, yout(:, Ini), 'Color', 'r', 'LineWidth', 2, 'Linestyle', '-');
 h = legend( 'Elongation',  'DNA', 'Chromosome');
 xlabel('Time (min)')
 ylabel('Count')
