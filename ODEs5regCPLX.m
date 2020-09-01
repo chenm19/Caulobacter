@@ -48,7 +48,13 @@ ksCcrM = 0.1;  kdCcrM = 0.1;
 ksDna = 0.1;   kdDna = 0.1;
 ksGcrA = 0.1;  kdGcrA = 0.1;
 ksSciP = 0.08;  kdSciP = 0.08;
+ss = 1.8; sd = 1;
+ksSciP = ss*0.08;  kdSciP = sd*0.08; % adjust by MC
+
 ksCtrA = 0.024;  kdCtrA = 0.002;
+ss = 1.7; sd = 1;
+ksCtrA = ss*0.024;  kdCtrA = sd*0.002; % adjust by MC
+
 kdCtrADivKp = 0.15; ndCtrADivKp = 2; JdCtrADivKp = 1;
 
 ksI = 0.05; kdI = 0.05;
@@ -64,21 +70,26 @@ JiCcrMSciP = 3;   niCcrMSciP = 2;
 
 %mDnaA
 ksmDnaA = 0.055;   kdmDnaA = 0.015;
+ss = 1.3; sd = 1.3;
+ksmDnaA = ss*0.055;   kdmDnaA =sd*0.015; % adjust MC
 JiDnaAGcrA = 3.0;	niDnaAGcrA = 2;
 JaDnaACtrA = 3.5;   naDnaACtrA = 2;
 
 %mGcrA
 ksmGcrA = 2.8;    kdmGcrA = 0.3;
+ss = 1.05; sd = 1;
+ksmGcrA = ss*2.8;    kdmGcrA = sd*0.3; % adjust MC
 JiGcrACtrA = 3.5;   niGcrACtrA = 2;
 JaGcrADnaA = 1.5;   naGcrADnaA = 2;
 
 %mSciP
 ksmSciP = 0.5; kdmSciP = 0.06;
+ss = 1; sd = 1;
+ksmSciP = ss*0.5;    kdmSciP = sd*0.06; % adjust MC
 JaSciPCtrA = 3.5; naSciPCtrA = 2;
 
 %mCtrA
 ksmCtrA = 0.9;	kdmCtrA = 0.1; 
-
 JaCtrACtrA = 3.5;	naCtrACtrA = 2;
 JaCtrAGcrA = 3.0;	naCtrAGcrA = 2;
 JiCtrACtrA = 3.5;	niCtrACtrA = 2;
