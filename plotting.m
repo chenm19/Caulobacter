@@ -154,7 +154,7 @@ hold on;
 box on;
 plot(t, scaled_dCcrM, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
-legend('Simulation','Empiracle', 'location', 'northwest')
+legend('Simulation','Empirical', 'location', 'northwest')
 title('\it{ccrM}')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
@@ -190,7 +190,7 @@ line(tout(a:b), yout(a:b, mDnaA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'
 hold on;
 box on;
 plot(t, scaled_dDnaA, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Empiracle');
+legend('Simulation','Empirical');
 title('\it{dnaA}')
 xlabel('Time (min)')
 xlim([1200 1350])
@@ -230,7 +230,7 @@ hold on;
 box on;
 plot(t, scaled_dGcrA, 'ro', 'MarkerFaceColor', 'r')
 xlim([1200 1350])
-legend('Simulation','Empiracle')
+legend('Simulation','Empirical')
 title('\it{gcrA}')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
@@ -266,7 +266,7 @@ line(tout(a:b), yout(a:b, mSciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'
 hold on;
 box on;
 plot(t, scaled_dSciP, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Empiracle')
+legend('Simulation','Empirical')
 xlim([1200 1350])
 title('\it{sciP}')
 xlabel('Time (min)')
@@ -303,7 +303,7 @@ line(tout(a:b), yout(a:b, mCtrA), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'
 hold on;
 box on;
 plot(t, scaled_dCtrA, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Empiracle', 'location', 'northwest')
+legend('Simulation','Empirical', 'location', 'northwest')
 xlim([1200 1350])
 title('\it{ctrA}')
 xlabel('Time (min)')
@@ -342,7 +342,7 @@ hold on;
 box on;
 plot(tp3, scaled_pCcrM3, 'ro', 'MarkerFaceColor', 'r')
 plot(tp5, scaled_pCcrM5, 'b^', 'MarkerFaceColor', 'b')
-legend('Simulation','Empiracle Source 1', 'Empiracle Source 2')
+legend('Simulation','Empirical 1', 'Empirical 2')
 xlim([1200 1350])
 title('CcrM')
 xlabel('Time (min)')
@@ -380,7 +380,7 @@ hold on;
 box on;
 plot(tp1, scaled_pDnaA1, 'ro', 'MarkerFaceColor', 'r')
 plot(tp5, scaled_pDnaA5, 'b^', 'MarkerFaceColor', 'b')
-legend('Simulation','Empiracle Source 1', 'Empiracle Source 2')
+legend('Simulation','Empirical 1', 'Empirical 2')
 xlim([1200 1350])
 title('DnaA')
 xlabel('Time (min)')
@@ -418,7 +418,7 @@ hold on;
 box on;
 plot(tp1, scaled_pGcrA1, 'ro', 'MarkerFaceColor', 'r')
 plot(tp2, scaled_pGcrA2, 'b^', 'MarkerFaceColor', 'b')
-legend('Simulation','Empiracle Source 1', 'Empiracle Source 2', 'location', 'southeast')
+legend('Simulation','Empirical Source 1', 'Empirical 2', 'location', 'southeast')
 xlim([1200 1350])
 title('GcrA')
 xlabel('Time (min)')
@@ -455,7 +455,7 @@ line(tout(a:b), yout(a:b, SciP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-')
 hold on;
 box on;
 plot(tp2, scaled_pSciP2, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation', 'Empiracle')
+legend('Simulation', 'Empirical')
 xlim([1200 1350])
 title('SciP')
 xlabel('Time (min)')
@@ -494,7 +494,7 @@ box on;
 plot(tp3, scaled_pCtrA3, 'ro', 'MarkerFaceColor', 'r')
 plot(tp5, scaled_pCtrA5, 'b^', 'MarkerFaceColor', 'b')
 
-legend('Simulation','Empiracle Source 1', 'Empiracle Source 2', 'location', 'northwest')
+legend('Simulation','Empirical 1', 'Empirical 2', 'location', 'northwest')
 xlim([1200 1350])
 title('CtrA')
 xlabel('Time (min)')
@@ -613,7 +613,7 @@ line(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'
 hold on;
 box on;
 plot(tpCpdRP, scaled_pCpdRP, 'ro', 'MarkerFaceColor', 'r')
-legend('Simulation','Empiracle')
+legend('Simulation','Empirical')
 xlim([1200 1350])
 title('CpdR~P')
 xlabel('Time (min)')
@@ -752,7 +752,7 @@ plot(time+10,cpdr,'ro','MarkerFaceColor','r')  % plotting experimental cpdr poin
 xlim([1200 1350])
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation','Empiracle')
+legend('Simulation','Empirical')
 hold on;
 f = gcf;
 if save_figs == 1
@@ -797,7 +797,7 @@ rcda = (rcda - min(rcda))/(max(rcda)-min(rcda))*(max(RCDA)-min(RCDA))+min(RCDA);
 plot(tpRcdA, rcda, 'ro', 'MarkerFaceColor', 'r')  % plotting experimental rcda points
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation', 'Empiracle')
+legend('Simulation', 'Empirical')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/RcdA.eps','Resolution',300)
@@ -818,7 +818,7 @@ xlim([1200 1350])
 title('cdG')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation', 'Empiracle')
+legend('Simulation', 'Empirical')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/cdG.eps','Resolution',300)
@@ -854,7 +854,7 @@ xlim([1200 1350])
 title('DivK~P')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation', 'Empiracle', 'location', 'northwest')
+legend('Simulation', 'Empirical', 'location', 'northwest')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/DivKP.eps','Resolution',300)
