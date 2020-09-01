@@ -71,21 +71,21 @@ JiCcrMSciP = 3;   niCcrMSciP = 2;
 %mDnaA
 ksmDnaA = 0.055;   kdmDnaA = 0.015;
 ss = 1.3; sd = 1.3;
-ksmDnaA = ss*0.055;   kdmDnaA =sd*0.015; % adjust MC
+ksmDnaA = ss*0.055;   kdmDnaA =sd*0.015; % adjust by MC
 JiDnaAGcrA = 3.0;	niDnaAGcrA = 2;
 JaDnaACtrA = 3.5;   naDnaACtrA = 2;
 
 %mGcrA
 ksmGcrA = 2.8;    kdmGcrA = 0.3;
 ss = 1.05; sd = 1;
-ksmGcrA = ss*2.8;    kdmGcrA = sd*0.3; % adjust MC
+ksmGcrA = ss*2.8;    kdmGcrA = sd*0.3; % adjust by MC
 JiGcrACtrA = 3.5;   niGcrACtrA = 2;
 JaGcrADnaA = 1.5;   naGcrADnaA = 2;
 
 %mSciP
 ksmSciP = 0.5; kdmSciP = 0.06;
 ss = 1; sd = 1;
-ksmSciP = ss*0.5;    kdmSciP = sd*0.06; % adjust MC
+ksmSciP = ss*0.5;    kdmSciP = sd*0.06; % adjust by MC
 JaSciPCtrA = 3.5; naSciPCtrA = 2;
 
 %mCtrA
@@ -111,13 +111,13 @@ JiCtrASciP = 3.0;	niCtrASciP = 2;
 dydt = zeros(tot, 1);  
 
 % DNA replication
-kaIni = 0.05;	JaIni = 1;		naIni = 4;
-
+kaIni = 0.05;	kiIni = 1; JaIni = 1; naIni = 4; JiIni = 1; niIni = 4; 
+kaIni = 0.05; % adjust by MC
 thetaCtrA = 1;	nthetaCtrA = 4;
 thetaDnaA = 3;	nthetaDnaA = 4;
 
-dydt(Ini) = kaIni*(JaIni^naIni/(JaIni^naIni + (y(CtrA)/thetaCtrA)^nthetaCtrA) ...
-     * (y(DnaA)/thetaDnaA)^nthetaDnaA/(JaIni^naIni + (y(DnaA)/thetaDnaA)^nthetaDnaA) );
+dydt(Ini) = kiIni*(JiIni^niIni/(JiIni^niIni + (y(CtrA)/thetaCtrA)^nthetaCtrA) ...
+     * kaIni*(y(DnaA)/thetaDnaA)^nthetaDnaA/(JaIni^naIni + (y(DnaA)/thetaDnaA)^nthetaDnaA) );
 
 dydt(Elong) = kelong*y(Elong)^nelong/(y(Elong)^nelong + 0.05^nelong)*y(Count);
 
