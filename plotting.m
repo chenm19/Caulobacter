@@ -13,7 +13,7 @@ close all; clf;
 
 load('output.mat')
 
-save_figs = 0;  %switch for saving: 1 = save; 0 = no save
+save_figs = 1;  %switch for saving: 1 = save; 0 = no save
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Five transcriptional regulators
@@ -149,7 +149,7 @@ scaled_dCcrM = (dCcrM - min(dCcrM))/(max(dCcrM)-min(dCcrM))*(max(yout(a:b, mCcrM
 
 figure(1)
  
-line(tout(a:b), yout(a:b, mCcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'); %simulated levels
+line(tout(a:b), yout(a:b -, mCcrM), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-'); %simulated levels
 hold on;
 box on;
 plot(t, scaled_dCcrM, 'ro', 'MarkerFaceColor', 'r')
@@ -577,7 +577,6 @@ end
 %%  Protein degredation (model II) figures 
 % plot Complex 1
 figure();
-set(gcf,'Position',[100 100 500 500])
 hold on; 
 box on;
 plot(tout(a:b), yout(a:b, CPLX1), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -610,7 +609,6 @@ end
 scaled_pCpdRP = (pCpdRP - min(pCpdRP))/(max(pCpdRP)-min(pCpdRP))*(max(yout(a:b, CpdRP))-min(yout(a:b, CpdRP)))+min(yout(a:b, CpdRP));
 
 figure()
-set(gcf,'Position',[100 100 500 500])
 line(tout(a:b), yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
 hold on;
 box on;
@@ -643,7 +641,6 @@ end
 
 % plot total CpdR + CpdRP
 figure();
-set(gcf,'Position',[100 100 500 500])
 hold on;
 box on;
 plot(tout(a:b), yout(a:b, CpdRP) + yout(a:b, CpdR), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -673,7 +670,6 @@ end
 
 % plot Complex 2
 figure();
-set(gcf,'Position',[100 100 500 500])
 hold on;
 box on;
 plot(tout(a:b), yout(a:b, CPLX2), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -704,7 +700,6 @@ end
 
 % plot Complex 3
 figure();
-set(gcf,'Position',[100 100 500 500])
 hold on;
 box on;
 plot(tout(a:b), yout(a:b,CPLX3), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
@@ -736,7 +731,6 @@ end
 % plot CpdR
 time=[0,20,40,60,80,100,120] + 1200;
 figure()
-set(gcf,'Position',[100 100 500 500])
 title('CpdR')
 hold on;
 box on;
@@ -790,7 +784,6 @@ end
 
 % plot RcdA
 figure()
-set(gcf,'Position',[100 100 500 500])
 title('RcdA')
 hold on;
 box on;
