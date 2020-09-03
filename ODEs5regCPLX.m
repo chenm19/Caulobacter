@@ -8,25 +8,6 @@ global CPLX1 CpdR CpdRP CPLX2 RcdA CPLX3;
 
 global p;
 
-%y(1) = [Ini]
-%y(2) = [Elong]
-%y(3) = [DNA]
-%y(4) = [Count]
-%y(5) = [hcori]
-%y(6) = [hccrm]
-%y(7) = [hctra]
-%y(8) = [mCcrM]
-%y(9) = [mDnaA]
-%y(10) = [mGcrA]
-%y(11) = [mSciP]
-%y(12) = [mCtrA]
-%y(13) = [CcrM]
-%y(14) = [DnaA]
-%y(15) = [GcrA]
-%y(16) = [SciP]
-%y(17) = [CtrA]
-%y(18) = [Sup]
-%y(19) = [DivKp]
 %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&&&&&&&&%
 
 % parameters for which cell we are tracking on
@@ -45,55 +26,65 @@ kmctrA = 1.4;	JmctrA = 0.95;	nmctrA = 4;
 
 % DnaA, GcrA, CtrA, CcrM, SciP
 ksCcrM = 0.1;  kdCcrM = 0.1;
+ss = 1; sd = 1;
+ksCcrM = ss*0.1;  kdCcrM = sd*0.1; % adjust by MC
 ksDna = 0.1;   kdDna = 0.1;
+ss = 1; sd = 1.1;
+ksDna = ss*0.1;   kdDna = sd*0.1; % adjust by MC
 ksGcrA = 0.1;  kdGcrA = 0.1;
+ss = 0.5; sd =0.4;
+ksGcrA = ss*0.1;  kdGcrA = sd*0.1;% adjust by MC
 ksSciP = 0.08;  kdSciP = 0.08;
-ss = 1.8; sd = 1;
+ss = 1.7; sd = .9;
 ksSciP = ss*0.08;  kdSciP = sd*0.08; % adjust by MC
-
 ksCtrA = 0.024;  kdCtrA = 0.002;
-ss = 1.7; sd = 1;
+ss = 1.5; sd = 1;
 ksCtrA = ss*0.024;  kdCtrA = sd*0.002; % adjust by MC
-
 kdCtrADivKp = 0.15; ndCtrADivKp = 2; JdCtrADivKp = 1;
 
 ksI = 0.05; kdI = 0.05;
 ksII = 0.05; kdII = 0.05;
+ss = 0.1; sd = 0.1;
+ksII = ss*0.05; kdII = sd*0.05; % adjust by MC
 ksIII = 0.1; kdIII = 0.1;
-% DivKp
+ss = 1; sd = 1;
+ksIII = ss*0.1; kdIII = sd*0.1; % adjust by MC
 
 %mCcrM
 ksmCcrM = 0.32;     kdmCcrM = 0.08;
-JaCcrMCtrA = 3.5;   naCcrMCtrA = 2;
-JiCcrMSciP = 3;   niCcrMSciP = 2;
-
+ss = .9; sd = 1;
+ksmCcrM = ss*0.32;     kdmCcrM = sd*0.08;  % adjust by MC
+JaCcrMCtrA = 5;   naCcrMCtrA = 2;
+JiCcrMSciP = 6;   niCcrMSciP = 2;
 
 %mDnaA
 ksmDnaA = 0.055;   kdmDnaA = 0.015;
-ss = 1.3; sd = 1.3;
+ss = 1.2; sd = 1;
 ksmDnaA = ss*0.055;   kdmDnaA =sd*0.015; % adjust by MC
-JiDnaAGcrA = 3.0;	niDnaAGcrA = 2;
-JaDnaACtrA = 3.5;   naDnaACtrA = 2;
+JiDnaAGcrA = 3;	niDnaAGcrA = 2;
+JaDnaACtrA = 5;   naDnaACtrA = 2;
 
 %mGcrA
 ksmGcrA = 2.8;    kdmGcrA = 0.3;
-ss = 1.05; sd = 1;
+ss = 2; sd = 2;
 ksmGcrA = ss*2.8;    kdmGcrA = sd*0.3; % adjust by MC
-JiGcrACtrA = 3.5;   niGcrACtrA = 2;
+JiGcrACtrA = 5;   niGcrACtrA = 2;
 JaGcrADnaA = 1.5;   naGcrADnaA = 2;
 
 %mSciP
 ksmSciP = 0.5; kdmSciP = 0.06;
 ss = 1; sd = 1;
 ksmSciP = ss*0.5;    kdmSciP = sd*0.06; % adjust by MC
-JaSciPCtrA = 3.5; naSciPCtrA = 2;
+JaSciPCtrA = 5; naSciPCtrA = 2;
 
 %mCtrA
-ksmCtrA = 0.9;	kdmCtrA = 0.1; 
-JaCtrACtrA = 3.5;	naCtrACtrA = 2;
-JaCtrAGcrA = 3.0;	naCtrAGcrA = 2;
-JiCtrACtrA = 3.5;	niCtrACtrA = 2;
-JiCtrASciP = 3.0;	niCtrASciP = 2;
+ksmCtrA = 0.9;	kdmCtrA = 0.1;
+ss = 1; sd = 1;
+ksmCtrA = ss*0.9;	kdmCtrA = sd*0.1; % adjust by MC
+JaCtrACtrA = 5;	naCtrACtrA = 2;
+JaCtrAGcrA = 3;	naCtrAGcrA = 2;
+JiCtrACtrA = 5;	niCtrACtrA = 2;
+JiCtrASciP = 6;	niCtrASciP = 2;
 
 % end of parameters
 
@@ -112,7 +103,7 @@ dydt = zeros(tot, 1);
 
 % DNA replication
 kaIni = 0.05;	kiIni = 1; JaIni = 1; naIni = 4; JiIni = 1; niIni = 4; 
-kaIni = 0.05; % adjust by MC
+% kaIni = 0.05; % adjust by MC
 thetaCtrA = 1;	nthetaCtrA = 4;
 thetaDnaA = 3;	nthetaDnaA = 4;
 
@@ -147,20 +138,23 @@ dydt(mGcrA) = ( ksmGcrA*y(DnaA)^naGcrADnaA/(JaGcrADnaA^naGcrADnaA + y(DnaA)^naGc
 dydt(mSciP) = ksmSciP*y(CtrA)^naSciPCtrA/(JaSciPCtrA^naSciPCtrA + y(CtrA)^naSciPCtrA) ...
               - kdmSciP*y(mSciP);
 
+          ss = 0.3; % adjust by MC
 dydt(mCtrA) = (ksmCtrA*y(CtrA)^naCtrACtrA/(JaCtrACtrA^naCtrACtrA + y(CtrA)^naCtrACtrA) ...
               + ksmCtrA*y(GcrA)^naCtrAGcrA/(JaCtrAGcrA^naCtrAGcrA + y(GcrA)^naCtrAGcrA) ...
               *JiCtrACtrA^niCtrACtrA/(JiCtrACtrA^niCtrACtrA + y(CtrA)^niCtrACtrA) ...
-              *JiCtrASciP^niCtrASciP/(JiCtrASciP^niCtrASciP + y(SciP)^niCtrASciP) ) ...
+              *JiCtrASciP^niCtrASciP/(JiCtrASciP^niCtrASciP + y(SciP)^niCtrASciP) )...
               *y(hCtrA) - kdmCtrA*y(mCtrA) ;
 
 % CcrM DnaA GcrA SciP CtrA CtrA
-scale_factor = 1;
 dydt(CcrM) = ksCcrM*y(mCcrM) - kdCcrM*y(CcrM);
 dydt(I) = ksI*y(mDnaA) - kdI*y(I);
-dydt(DnaA) = scale_factor*(ksDna*y(I) - kdDna*y(DnaA));
+% dydt(DnaA) = ksDna*y(I) - kdDna*y(DnaA);
+dydt(DnaA) = ksDna*y(mDnaA) - kdDna*y(DnaA); % adjust by MC
 
 dydt(II) = ksII*y(mGcrA) - kdII*y(II);
 dydt(GcrA) = ksGcrA*y(II) - kdGcrA*y(GcrA);
+dydt(GcrA) = ksGcrA*y(mGcrA) - kdGcrA*y(GcrA); % adjust by MC
+
 dydt(SciP) = ksSciP*y(mSciP) - kdSciP*y(SciP);
 
 

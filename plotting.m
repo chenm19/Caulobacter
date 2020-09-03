@@ -13,7 +13,7 @@ close all; clf;
 
 load('output.mat')
 
-save_figs = 1;  %switch for saving: 1 = save; 0 = no save
+save_figs = 0;  %switch for saving: 1 = save; 0 = no save
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Five transcriptional regulators
@@ -418,7 +418,7 @@ hold on;
 box on;
 plot(tp1, scaled_pGcrA1, 'ro', 'MarkerFaceColor', 'r')
 plot(tp2, scaled_pGcrA2, 'b^', 'MarkerFaceColor', 'b')
-legend('Simulation','Empirical Source 1', 'Empirical 2', 'location', 'southeast')
+legend('Simulation','Empirical 1', 'Empirical 2', 'location', 'southeast')
 xlim([0 150])
 title('GcrA')
 xlabel('Time (min)')

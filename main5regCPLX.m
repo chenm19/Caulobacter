@@ -90,8 +90,8 @@ y0(III) = 0.1;
 
 % Chunrui
 y0(CPLX1) = 0.1;
-y0(CpdR) = 4;
-y0(CpdRP) = 0.1;
+y0(CpdR) = 2;%4;
+y0(CpdRP) = 1;%0.1;
 y0(CPLX2) = 0;
 y0(RcdA) = 2;
 y0(CPLX3) = 0;
@@ -155,7 +155,7 @@ while tstart < tfinal
         
     	case 3
       	y0(hCtrA) = 1;
-        y0(DivKp) = 0;
+%         y0(DivKp) = 0;
 
     	case 4
       	y0(Elong) = 0;
