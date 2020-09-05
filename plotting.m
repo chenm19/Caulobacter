@@ -877,134 +877,116 @@ end
 % if save_figs == 1
 %     exportgraphics(f,'./resources/generated_plots/DivKP_full.eps','Resolution',300)
 % end
-%% Old plotting code
+%% plotting bar charts
 
-% subplot(3,1,1);
-% % cpdrp=[9118.983,4425.406,3905.163,1912.92,5768.719,8952.497,6521.347];
-% cpdrp=[9118.983;4425.406;3905.163;1912.92;5768.719;8952.497;22145.296];
-% % cpdrp=cpdrp/max(cpdrp);
-% dif=max(cpdrp)-min(cpdrp);
-% cpdrp=(cpdrp-min(cpdrp))/dif;
-% 
-% scatter(time+20,cpdrp,'ro','MarkerFaceColor','r')
-% hold on;
-% CPDRP=yout(:,3);
-% % plot(tout,CPDRP);
-% CPDRP=CPDRP(a:b);
-% DIF=max(CPDRP)-min(CPDRP);
-% CPDRP=(CPDRP-min(CPDRP))/DIF;
-% plot(tout(a:b) - 1200-450,CPDRP)%plot the forth cell cycle 450-600min
-% xlabel('Time/min')
-% ylabel('CpdRP')
-% legend('experimental data','simulated CpdRP')
-% hold on;
+figure()
+title('Relative Maximum Concentrations')
+X = categorical({'DnaA','GcrA','CtrA','CcrM', 'SciP'});
+max_DnaA = max(yout(a:b, DnaA));
+max_GcrA = max(yout(a:b, GcrA));
+max_CtrA = max(yout(a:b, CtrA));
+max_CcrM = max(yout(a:b, CcrM));
+max_SciP = max(yout(a:b, SciP));
+Y = [max_DnaA, max_GcrA, max_CtrA, max_CcrM, max_SciP];
+bar(y,'FaceColor',[1, 0, 0],'EdgeColor',[1 1 1],'LineWidth',4)
+bar(X,Y)
+if save_figs == 1
+     exportgraphics(f,'./resources/generated_plots/bar_chart.eps','Resolution',300)
+end
 
-% figure(55)
-% line(tout, yout(:, Elong), 'Color', 'k', 'LineWidth', 2, 'Linestyle', '-');
-% axis([0 420 0 0.1])
-
-% figure(66)
-% % subplot(2,3,1)
-% figure(61)
-% avg = mean(yout(:, CcrM))*ones(1,30);
-% space1 = zeros(1,90);
-% space2 = zeros(1,30);
-% et = 1:1:150;
-% e1 = [space1,  avg,  space2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, CcrM)>mean(yout(:, CcrM)))=mean(yout(:, CcrM));
-% scatter(tout, ybar, '.b', 'LineWidth', 4);
-% plot(tout, yout(:,CcrM), 'k')
-% title('CcrM')
-% legend('Experiment','Simulation','Curve')
-% axis([0 150 0 1])
-% grid on 
-% set(gca,'xtick',[0:30:150])
-% 
-% 
-% % subplot(2,3,2)
-% figure(62)
-% avg = mean(yout(:, DnaA))*ones(1,50);
-% space1 = zeros(1,10);
-% space2 = zeros(1,90);
-% e1 = [space1,  avg,  space2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, DnaA)>mean(yout(:, DnaA)))=mean(yout(:, DnaA));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% plot(tout, yout(:,DnaA), 'k')
-% ('DnaA')
-% legend('Experiment','Simulation','Curve')
-% axis([0 150 0 3])
-% grid on 
-% set(gca,'xtick',[0:30:150])
-% 
-% % subplot(2,3,3)
-% figure(63)
-% avg = mean(yout(:, GcrA))*ones(1,55);
-% space1 = zeros(1,45);
-% space2 = zeros(1,50);
-% e1 = [space1,  avg,  space2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, GcrA)>mean(yout(:, GcrA)))=mean(yout(:, GcrA));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% plot(tout, yout(:,GcrA), 'k')
-% title('GcrA')
-% legend('Experiment','Simulation','Curve')
-% axis([0 150 0 6])
-% grid on 
-% set(gca,'xtick',[0:30:150])
-% 
-% % subplot(2,3,4)
-% figure(64)
-% avg = mean(yout(:, SciP))*ones(1,15);
-% avg2 = mean(yout(:, SciP))*ones(1,60);
-% space1 = zeros(1,85);
-% e1 = [avg, space1, avg2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, SciP)>mean(yout(:, SciP)))=mean(yout(:, SciP));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% plot(tout, yout(:,SciP), 'k')
-% title('SciP')
-% legend('Experiment','Simulation','Curve')
-% axis([0 150 0 7])
-% grid on 
-% set(gca,'xtick',[0:30:150])
-% 
-% % subplot(2,3,5)
-% figure(65)
-% avg = mean(yout(:, CtrA))*ones(1,15);
-% avg2 = mean(yout(:, CtrA))*ones(1,60);
-% space1 = zeros(1,75);
-% e1 = [avg, space1, avg2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, CtrA)>mean(yout(:, CtrA)))=mean(yout(:, CtrA));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% plot(tout, yout(:,CtrA), 'k')
-% title('CtrA')
-% legend('Experiment','Simulation','Curve')
-% axis([0 150 0 8])
-
-% grid on 
-% set(gca,'xtick',[0:30:150])
+figure()
+subplot(5,1,1);
+avg = mean(yout(:, CcrM))*ones(1,30);
+space1 = zeros(1,90);
+space2 = zeros(1,30);
+et = 1:1:150;
+e1 = [space1,  avg,  space2];
+scatter(et, e1, 'ro', 'LineWidth', 4);
+hold on;
+ybar = zeros(size(tout));
+ybar(yout(:, CcrM) > mean(yout(:, CcrM))) = mean(yout(:, CcrM));
+scatter(tout, ybar, '^b', 'LineWidth', 4);
+%plot(tout, yout(:,CcrM), 'k')
+title('CcrM')
+legend('Experiment','Simulation','location', 'westoutside')
+legend('boxoff')
+axis([0 150 0 1])
+grid on 
+set(gca,'xtick',[0:30:150])
 
 
-% h = legend('CtrA', 'DnaA',  'GcrA', 'CcrM', 'Location', 'North');
-% axis([0 500 0.2 4])
+subplot(5, 1, 2);
+avg = mean(yout(:, DnaA))*ones(1,50);
+space1 = zeros(1,10);
+space2 = zeros(1,90);
+e1 = [space1,  avg,  space2];
+scatter(et, e1, 'r*', 'LineWidth', 4);
+hold on;
+ybar = zeros(size(tout));
+ybar(yout(:, DnaA)>mean(yout(:, DnaA)))=mean(yout(:, DnaA));
+scatter(tout, ybar, 'b.', 'LineWidth', 4);
+%plot(tout, yout(:,DnaA), 'k')
+title('DnaA')
+legend('Experiment','Simulation','location', 'westoutside')
+legend('boxoff')
+axis([0 150 0 3])
+grid on 
+set(gca,'xtick',[0:30:150])
 
-% set(gca,'YTick',[1:4]) 
-% lab = ['CcrM';'GcrA'; 'DnaA';'CtrA'];
-% set(gca,'yticklabel',lab);
-% title('Temporal control results from Shenghua model')
+subplot(5,1,3)
+
+avg = mean(yout(:, GcrA))*ones(1,55);
+space1 = zeros(1,45);
+space2 = zeros(1,50);
+e1 = [space1,  avg,  space2];
+scatter(et, e1, 'r*', 'LineWidth', 4);
+hold on;
+ybar = zeros(size(tout));
+ybar(yout(:, GcrA)>mean(yout(:, GcrA)))=mean(yout(:, GcrA));
+scatter(tout, ybar, 'b.', 'LineWidth', 4);
+%plot(tout, yout(:,GcrA), 'k')
+title('GcrA')
+legend('Experiment','Simulation','location', 'westoutside')
+legend('boxoff')
+axis([0 150 0 6])
+grid on 
+set(gca,'xtick',[0:30:150])
+
+subplot(5,1,4)
+avg = mean(yout(:, SciP))*ones(1,15);
+avg2 = mean(yout(:, SciP))*ones(1,60);
+
+scatter([], [], 'r*', 'LineWidth', 4);
+hold on;
+ybar = zeros(size(tout));
+ybar(yout(:, SciP)>mean(yout(:, SciP)))=mean(yout(:, SciP));
+scatter(tout, ybar, 'b.', 'LineWidth', 4);
+%plot(tout, yout(:,SciP), 'k')
+title('SciP')
+legend('Experiment','Simulation','location', 'westoutside')
+legend('boxoff')
+axis([0 150 0 7])
+grid on 
+set(gca,'xtick',[0:30:150])
+
+subplot(5,1,5)
+avg = mean(yout(:, CtrA))*ones(1,15);
+avg2 = mean(yout(:, CtrA))*ones(1,60);
+space1 = zeros(1,75);
+e1 = [avg, space1, avg2];
+scatter(et, e1, 'r*', 'LineWidth', 4);
+hold on;
+ybar = zeros(size(tout));
+ybar(yout(:, CtrA)>mean(yout(:, CtrA)))=mean(yout(:, CtrA));
+scatter(tout, ybar, 'b.', 'LineWidth', 4);
+%plot(tout, yout(:,CtrA), 'k')
+title('CtrA')
+legend('Experiment','Simulation','location', 'westoutside')
+legend('boxoff')
+axis([0 150 0 8])
+grid on 
+set(gca,'xtick',[0:30:150])
+
 %%
 
 
