@@ -880,7 +880,7 @@ end
 %% plotting bar charts
 
 figure()
-title('Relative Maximum Concentrations')
+box on;
 X = categorical({'DnaA','GcrA','CtrA','CcrM', 'SciP'});
 max_DnaA = max(yout(a:b, DnaA));
 max_GcrA = max(yout(a:b, GcrA));
@@ -888,15 +888,15 @@ max_CtrA = max(yout(a:b, CtrA));
 max_CcrM = max(yout(a:b, CcrM));
 max_SciP = max(yout(a:b, SciP));
 Y = [max_DnaA, max_GcrA, max_CtrA, max_CcrM, max_SciP];
-bar(y,'FaceColor',[1, 0, 0],'EdgeColor',[1 1 1],'LineWidth',4)
-bar(X,Y)
+bar(X,Y,'FaceColor',[0 0.4470 0.7410],'EdgeColor',[1 1 1],'LineWidth',4)
+title('Relative Maximum Protein Concentrations')
 if save_figs == 1
      exportgraphics(f,'./resources/generated_plots/bar_chart.eps','Resolution',300)
 end
 
 figure()
 subplot(5,1,1);
-avg = mean(yout(:, CcrM))*ones(1,30);
+avg = mean(yout(a:b, CcrM))*ones(1,30);
 space1 = zeros(1,90);
 space2 = zeros(1,30);
 et = 1:1:150;
