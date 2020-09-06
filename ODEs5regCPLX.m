@@ -29,10 +29,10 @@ ksCcrM = 0.1;  kdCcrM = 0.1;
 ss = 1; sd = 1;
 ksCcrM = ss*0.1;  kdCcrM = sd*0.1; % adjust by MC
 ksDna = 0.1;   kdDna = 0.1;
-ss = 1; sd = 1.1;
+ss = 1; sd = 1.2;
 ksDna = ss*0.1;   kdDna = sd*0.1; % adjust by MC
 ksGcrA = 0.1;  kdGcrA = 0.1;
-ss = 0.5; sd =0.4;
+ss = 0.45; sd =0.4;
 ksGcrA = ss*0.1;  kdGcrA = sd*0.1;% adjust by MC
 ksSciP = 0.08;  kdSciP = 0.08;
 ss = 1.7; sd = .9;
@@ -52,14 +52,14 @@ ksIII = ss*0.1; kdIII = sd*0.1; % adjust by MC
 
 %mCcrM
 ksmCcrM = 0.32;     kdmCcrM = 0.08;
-ss = .9; sd = 1;
+ss = .8; sd = 1;
 ksmCcrM = ss*0.32;     kdmCcrM = sd*0.08;  % adjust by MC
 JaCcrMCtrA = 5;   naCcrMCtrA = 2;
 JiCcrMSciP = 6;   niCcrMSciP = 2;
 
 %mDnaA
 ksmDnaA = 0.055;   kdmDnaA = 0.015;
-ss = 1.2; sd = 1;
+ss = 1.1; sd = 1;
 ksmDnaA = ss*0.055;   kdmDnaA =sd*0.015; % adjust by MC
 JiDnaAGcrA = 3;	niDnaAGcrA = 2;
 JaDnaACtrA = 5;   naDnaACtrA = 2;
@@ -69,7 +69,7 @@ ksmGcrA = 2.8;    kdmGcrA = 0.3;
 ss = 2; sd = 2;
 ksmGcrA = ss*2.8;    kdmGcrA = sd*0.3; % adjust by MC
 JiGcrACtrA = 5;   niGcrACtrA = 2;
-JaGcrADnaA = 1.5;   naGcrADnaA = 2;
+JaGcrADnaA = 1.25;   naGcrADnaA = 2;
 
 %mSciP
 ksmSciP = 0.5; kdmSciP = 0.06;
@@ -83,8 +83,8 @@ ss = 1; sd = 1;
 ksmCtrA = ss*0.9;	kdmCtrA = sd*0.1; % adjust by MC
 JaCtrACtrA = 5;	naCtrACtrA = 2;
 JaCtrAGcrA = 3;	naCtrAGcrA = 2;
-JiCtrACtrA = 5;	niCtrACtrA = 2;
-JiCtrASciP = 6;	niCtrASciP = 2;
+JiCtrACtrA = 8;	niCtrACtrA = 4;
+JiCtrASciP = 8;	niCtrASciP = 4;
 
 % end of parameters
 
@@ -138,9 +138,9 @@ dydt(mGcrA) = ( ksmGcrA*y(DnaA)^naGcrADnaA/(JaGcrADnaA^naGcrADnaA + y(DnaA)^naGc
 dydt(mSciP) = ksmSciP*y(CtrA)^naSciPCtrA/(JaSciPCtrA^naSciPCtrA + y(CtrA)^naSciPCtrA) ...
               - kdmSciP*y(mSciP);
 
-          ss = 0.3; % adjust by MC
-dydt(mCtrA) = (ksmCtrA*y(CtrA)^naCtrACtrA/(JaCtrACtrA^naCtrACtrA + y(CtrA)^naCtrACtrA) ...
-              + ksmCtrA*y(GcrA)^naCtrAGcrA/(JaCtrAGcrA^naCtrAGcrA + y(GcrA)^naCtrAGcrA) ...
+ss = 0.1; aa = 1.1;% adjust by MC
+dydt(mCtrA) = ss*(ksmCtrA*y(CtrA)^naCtrACtrA/(JaCtrACtrA^naCtrACtrA + y(CtrA)^naCtrACtrA)) ...
+              + aa*( ksmCtrA*y(GcrA)^naCtrAGcrA/(JaCtrAGcrA^naCtrAGcrA + y(GcrA)^naCtrAGcrA) ...
               *JiCtrACtrA^niCtrACtrA/(JiCtrACtrA^niCtrACtrA + y(CtrA)^niCtrACtrA) ...
               *JiCtrASciP^niCtrASciP/(JiCtrASciP^niCtrASciP + y(SciP)^niCtrASciP) )...
               *y(hCtrA) - kdmCtrA*y(mCtrA) ;
