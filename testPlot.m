@@ -13,6 +13,10 @@ load('output.mat')
 
 save_figs = 0;  %switch for saving: 1 = save; 0 = no save
 
+% isolating the indices of the 8th cell cycle:
+[~, a]=min(abs(tout(:)-1200));  % a and b are indeces of beginning and end of cell cycle 
+[~, b]=min(abs(tout(:)-1350));
+
 %% bar chart test
 figure(1)
 box on;
