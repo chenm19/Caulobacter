@@ -570,7 +570,8 @@ e1 = [space1,  avg,  space2];
 scatter(et, e1, 'sr', 'LineWidth', 3, 'MarkerFaceColor', 'r' );
 hold on;
 ybar = zeros(size(tout));
-ybar(yout(:, CcrM)>mean(yout(:, CcrM)))=2;
+threshold = (max(yout(:, CcrM)) + min(yout(:, CcrM)))/2;
+ybar(yout(:, CcrM)> threshold )=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
 title('CcrM')
 % legend('Experiment','Simulation','Curve')
@@ -590,7 +591,8 @@ e1 = [space1,  avg,  space2];
 scatter(et, e1, 'sr', 'LineWidth', 3, 'MarkerFaceColor', 'r' );
 hold on;
 ybar = zeros(size(tout));
-ybar(yout(:, DnaA)>mean(yout(:, DnaA)))=2;
+threshold = (max(yout(:, DnaA)) + min(yout(:, DnaA)))/2;
+ybar(yout(:, DnaA) > threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
 title('DnaA')
 axis([0 150 0.5 2.5])
@@ -608,7 +610,8 @@ e1 = [space1,  avg,  space2];
 scatter(et, e1, 'sr', 'LineWidth', 3, 'MarkerFaceColor', 'r' );
 hold on;
 ybar = zeros(size(tout));
-ybar(yout(:, GcrA)>mean(yout(:, GcrA)))=2;
+threshold = (max(yout(:, GcrA)) + min(yout(:, GcrA)))/2;
+ybar(yout(:, GcrA)>threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
 title('GcrA')
 % legend('Experiment','Simulation','Curve')
@@ -627,7 +630,8 @@ e1 = [avg, space1, avg2];
 scatter(et, e1, 'sr', 'LineWidth', 3, 'MarkerFaceColor', 'r' );
 hold on;
 ybar = zeros(size(tout));
-ybar(yout(:, SciP)>mean(yout(:, SciP)))=2;
+threshold = (max(yout(:, SciP)) + min(yout(:, SciP)))/2;
+ybar(yout(:, SciP)> threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
 title('SciP')
 % legend('Experiment','Simulation','Curve')
@@ -646,7 +650,8 @@ e1 = [avg, space1, avg2];
 scatter(et, e1, 'sr', 'LineWidth', 3, 'MarkerFaceColor', 'r' );
 hold on;
 ybar = zeros(size(tout));
-ybar(yout(:, CtrA)>mean(yout(:, CtrA)))=2;
+threshold = (max(yout(:, CtrA)) + min(yout(:, CtrA)))/2;
+ybar(yout(:, CtrA)> threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
 title('CtrA')
 % legend('Experiment','Simulation','Curve')
@@ -659,104 +664,7 @@ if save_figs == 1
      exportgraphics(f,'./resources/generated_plots/line_chart.eps','Resolution',300)
 end
 
-%% old plotting code
-% figure()
-% subplot(5,1,1);
-% avg = mean(yout(a:b, CcrM))*ones(1,30);
-% space1 = zeros(1,90);
-% space2 = zeros(1,30);
-% et = 1:1:150;
-% e1 = [space1,  avg,  space2];
-% scatter(et, e1, 'ro', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, CcrM) > mean(yout(:, CcrM))) = mean(yout(:, CcrM));
-% scatter(tout, ybar, '^b', 'LineWidth', 4);
-% %plot(tout, yout(:,CcrM), 'k')
-% title('CcrM')
-% legend('Experiment','Simulation','location', 'westoutside')
-% legend('boxoff')
-% axis([0 150 0 1])
-% grid on 
-% %set(gca,'xtick',[0:30:150])
-% 
-% 
-% subplot(5, 1, 2);
-% avg = mean(yout(:, DnaA))*ones(1,50);
-% space1 = zeros(1,10);
-% space2 = zeros(1,90);
-% e1 = [space1,  avg,  space2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, DnaA)>mean(yout(:, DnaA)))=mean(yout(:, DnaA));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% %plot(tout, yout(:,DnaA), 'k')
-% title('DnaA')
-% legend('Experiment','Simulation','location', 'westoutside')
-% legend('boxoff')
-% axis([0 150 0 3])
-% grid on 
-% %set(gca,'xtick',[0:30:150])
-% 
-% subplot(5,1,3)
-% 
-% avg = mean(yout(:, GcrA))*ones(1,55);
-% space1 = zeros(1,45);
-% space2 = zeros(1,50);
-% e1 = [space1,  avg,  space2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, GcrA)>mean(yout(:, GcrA)))=mean(yout(:, GcrA));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% %plot(tout, yout(:,GcrA), 'k')
-% title('GcrA')
-% legend('Experiment','Simulation','location', 'westoutside')
-% legend('boxoff')
-% axis([0 150 0 6])
-% grid on 
-% %set(gca,'xtick',[0:30:150])
-% 
-% subplot(5,1,4)
-% avg = mean(yout(:, SciP))*ones(1,15);
-% avg2 = mean(yout(:, SciP))*ones(1,60);
-% 
-% scatter([], [], 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, SciP)>mean(yout(:, SciP)))=mean(yout(:, SciP));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% %plot(tout, yout(:,SciP), 'k')
-% title('SciP')
-% legend('Experiment','Simulation','location', 'westoutside')
-% legend('boxoff')
-% axis([0 150 0 7])
-% grid on 
-% set(gca,'xtick',[0:30:150])
-% 
-% subplot(5,1,5)
-% avg = mean(yout(:, CtrA))*ones(1,15);
-% avg2 = mean(yout(:, CtrA))*ones(1,60);
-% space1 = zeros(1,75);
-% e1 = [avg, space1, avg2];
-% scatter(et, e1, 'r*', 'LineWidth', 4);
-% hold on;
-% ybar = zeros(size(tout));
-% ybar(yout(:, CtrA)>mean(yout(:, CtrA)))=mean(yout(:, CtrA));
-% scatter(tout, ybar, 'b.', 'LineWidth', 4);
-% %plot(tout, yout(:,CtrA), 'k')
-% title('CtrA')
-% legend('Experiment','Simulation','location', 'westoutside')
-% legend('boxoff')
-% axis([0 150 0 8])
-% grid on 
-% set(gca,'xtick',[0:30:150])
-
-%%
-
-
-%end of plotting
+%% end of plotting
 %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
 
 % figure(66)
