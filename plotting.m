@@ -1,7 +1,7 @@
 %% Ploting the time courses of model variables
 
-set(groot, 'DefaultAxesFontSize', 28)
-set(groot, 'defaultFigurePosition', [100 100 500 500])
+set(groot, 'DefaultAxesFontSize', 36)
+set(groot, 'defaultFigurePosition', [100 100 500 400])
 set(groot,'DefaultFigureColormap',jet)
 set(groot,'DefaultAxesColorOrder',[0 0 1; 0 .5 0; 1 0 0; 0 .75 .75; .75 0 .75; .75 .75 0; .25 .25 .25])
 set(groot,'DefaultFigureGraphicsSmoothing','off')
@@ -11,7 +11,7 @@ close all; clf;
 
 load('output.mat')
 
-save_figs = 0;  %switch for saving: 1 = save; 0 = no save
+save_figs = 1;  %switch for saving: 1 = save; 0 = no save
 
 Ini = 1;
 Elong = 2;
@@ -342,7 +342,7 @@ end
 figure()
  
 box on;
-title('Probability of Hemimethylated States')
+title('Hemimethylated States')
 line(tout(a:b) - 1200, yout(a:b, hcori), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '-');
 line(tout(a:b) - 1200, yout(a:b, hCcrM), 'Color', 'm', 'LineWidth', 3, 'Linestyle', '-');
 line(tout(a:b) - 1200, yout(a:b, hCtrA), 'Color', 'b', 'LineWidth', 3, 'Linestyle', '--');
@@ -461,7 +461,7 @@ cpdr = (cpdr - min(cpdr))/(max(cpdr)-min(cpdr))*(max(CPDR)-min(CPDR))+min(CPDR);
 
 % cpdr=cpdr/max(cpdr);
 
-plot(time+10,cpdr,'ro','MarkerFaceColor','r', 'MarkerSize', 15)  % plotting experimental cpdr points
+plot(time-1190,cpdr,'ro','MarkerFaceColor','r', 'MarkerSize', 15)  % plotting experimental cpdr points
 
 xlim([0 150])
 xlabel('Time (min)')
@@ -551,7 +551,7 @@ max_CcrM = max(yout(a:b, CcrM));
 max_SciP = max(yout(a:b, SciP));
 Y = [max_DnaA, max_GcrA, max_CtrA, max_CcrM, max_SciP];
 bar(X,Y,'FaceColor',[0 0.4470 0.7410],'EdgeColor',[1 1 1])
-title('Relative Maximum Protein Concentrations')
+%title('Relative Maximum Protein Concentrations')
 if save_figs == 1
      exportgraphics(f,'./resources/generated_plots/bar_chart.eps','Resolution',300)
 end
