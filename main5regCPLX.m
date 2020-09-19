@@ -25,7 +25,7 @@ global CELLTYPE;
 CELLTYPE = celltype;
 
 global Ini Elong DNA Count hcori hCcrM hCtrA mCcrM mDnaA ...
-    mGcrA mSciP mCtrA CcrM DnaA GcrA SciP CtrA Sup DivKp I II III tot;
+    mGcrA mSciP mCtrA CcrM DnaA GcrA SciP CtrA Sup DivKp I_DnaA I_GcrA I_ccrM tot;
 
 global CPLX1 CpdR CpdRP CPLX2 RcdA CPLX3; 
 
@@ -49,9 +49,9 @@ SciP = 16;
 CtrA = 17;
 Sup = 18;
 DivKp = 19;
-I = 20;
-II = 21;
-III = 22;
+I_DnaA = 20;
+I_GcrA = 21;
+I_ccrM = 22;
 tot = 28;
 
 CPLX1 = 23;
@@ -84,9 +84,9 @@ y0(SciP) = 6.5;
 y0(CtrA) = 6.5;
 y0(Sup) = 0.3000;
 y0(DivKp) = 1.0;
-y0(I) = 1.05; 
-y0(II) = 1.05; 
-y0(III) = 0.1;
+y0(I_DnaA) = 1.05; 
+y0(I_GcrA) = 1.05; 
+y0(I_ccrM) = 0.1;
 
 % Chunrui
 y0(CPLX1) = 0.1;
