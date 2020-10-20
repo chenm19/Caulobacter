@@ -2,7 +2,7 @@
 
 set(groot, 'DefaultAxesFontSize', 36)
 set(groot, 'defaultFigurePosition', [100 100 500 400])
-set(groot,'DefaultFigureColormap',jet)
+set(groot,'DefaultFigureColormap',jet)  
 set(groot,'DefaultAxesColorOrder',[0 0 1; 0 .5 0; 1 0 0; 0 .75 .75; .75 0 .75; .75 .75 0; .25 .25 .25])
 set(groot,'DefaultFigureGraphicsSmoothing','off')
 box on
@@ -11,7 +11,7 @@ close all; clf;
 
 load('output.mat')
 
-save_figs = 1;  %switch for saving: 1 = save; 0 = no save
+save_figs = 0;  %switch for saving: 1 = save; 0 = no save
 
 Ini = 1;
 Elong = 2;
@@ -50,6 +50,20 @@ dCcrM = [17	17	24	445	435	101]./445;
 dSciP = [2858	451	199	796	2956	2649]./445;
 dGcrA = [550	3001	1275	476	725	1493]./445;
 dCtrA = [195	612	2251	3216	2486	1617]./445;
+
+ref_ccrM_dnaA_gcrA_sciP_ctrA = " [26]";
+ref_CpdR = " [10]";
+ref_CcrM_1 = " [24]";
+ref_CcrM_2 = " [28]";
+ref_DnaA_1 = " [28]";
+ref_DnaA_2 = " [4]";
+ref_GcrA_1 = " [4]";
+ref_GcrA_2 = " [31]";
+ref_SciP = " [31]";
+ref_CtrA_1 = " [24]";
+ref_CtrA_2 = " [28]";
+ref_RcdA = " [22]";
+ref_cdG = " [1]";
 
 %% old protein data
 tp_old = [0, 20, 40, 60, 80, 100, 120, 140];
@@ -131,7 +145,7 @@ hold on;
 box on;
 plot(t, scaled_dCcrM, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15);
 xlim([0 150])
-legend('Simulation','Empirical', 'location', 'northwest')
+legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA), 'location', 'northwest')
 title('\it{ccrM}')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
@@ -152,7 +166,7 @@ line(tout(a:b)-1200, yout(a:b, mDnaA), 'Color', 'k', 'LineWidth', 3, 'Linestyle'
 hold on;
 box on;
 plot(t, scaled_dDnaA, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
-legend('Simulation','Empirical');
+legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA));
 title('\it{dnaA}')
 xlabel('Time (min)')
 xlim([0 150])
@@ -174,7 +188,7 @@ hold on;
 box on;
 plot(t, scaled_dGcrA, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
 xlim([0 150])
-legend('Simulation','Empirical')
+legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA))
 title('\it{gcrA}')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
@@ -195,7 +209,7 @@ line(tout(a:b) - 1200, yout(a:b, mSciP), 'Color', 'k', 'LineWidth', 3, 'Linestyl
 hold on;
 box on;
 plot(t, scaled_dSciP, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
-legend('Simulation','Empirical', 'location', 'SouthEast')
+legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA), 'location', 'SouthEast')
 xlim([0 150])
 title('\it{sciP}')
 xlabel('Time (min)')
@@ -215,7 +229,7 @@ line(tout(a:b) - 1200, yout(a:b, mCtrA), 'Color', 'k', 'LineWidth', 3, 'Linestyl
 hold on;
 box on;
 plot(t, scaled_dCtrA, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
-legend('Simulation','Empirical', 'location', 'northwest')
+legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA), 'location', 'northwest')
 xlim([0 150])
 title('\it{ctrA}')
 xlabel('Time (min)')
@@ -237,7 +251,7 @@ hold on;
 box on;
 plot(tp3, scaled_pCcrM3, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
 plot(tp5, scaled_pCcrM5, 'b^', 'MarkerFaceColor', 'b', 'MarkerSize', 15)
-legend('Simulation','Empirical 1', 'Empirical 2', 'location', 'NorthWest')
+legend('Simulation',strcat('Empirical 1', ref_CcrM_1), strcat('Empirical 2', ref_CcrM_2), 'location', 'NorthWest')
 xlim([0 150])
 title('CcrM')
 xlabel('Time (min)')
@@ -258,7 +272,7 @@ hold on;
 box on;
 plot(tp1, scaled_pDnaA1, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
 plot(tp5, scaled_pDnaA5, 'b^', 'MarkerFaceColor', 'b', 'MarkerSize', 15)
-legend('Simulation','Empirical 1', 'Empirical 2')
+legend('Simulation',strcat('Empirical 1', ref_DnaA_1), strcat('Empirical 2', ref_DnaA_2))
 xlim([0 150])
 title('DnaA')
 xlabel('Time (min)')
@@ -281,7 +295,7 @@ hold on;
 box on;
 plot(tp1, scaled_pGcrA1, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
 plot(tp2, scaled_pGcrA2, 'b^', 'MarkerFaceColor', 'b', 'MarkerSize', 15)
-legend('Simulation','Empirical 1', 'Empirical 2', 'location', 'south')
+legend('Simulation',strcat('Empirical 1', ref_GcrA_1), strcat('Empirical 2', ref_GcrA_2), 'location', 'south')
 xlim([0 150])
 title('GcrA')
 xlabel('Time (min)')
@@ -302,7 +316,7 @@ line(tout(a:b) - 1200, yout(a:b, SciP), 'Color', 'k', 'LineWidth', 3, 'Linestyle
 hold on;
 box on;
 plot(tp2, scaled_pSciP2, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
-legend('Simulation', 'Empirical', 'location', 'north')
+legend('Simulation', strcat('Empirical', ref_SciP), 'location', 'north')
 xlim([0 150])
 title('SciP')
 xlabel('Time (min)')
@@ -326,7 +340,7 @@ box on;
 plot(tp3, scaled_pCtrA3, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
 plot(tp5, scaled_pCtrA5, 'b^', 'MarkerFaceColor', 'b', 'MarkerSize', 15)
 
-legend('Simulation','Empirical 1', 'Empirical 2', 'location', 'northwest')
+legend('Simulation',strcat('Empirical 1', ref_CtrA_1), strcat('Empirical 2', ref_CtrA_2), 'location', 'northwest')
 xlim([0 150])
 title('CtrA')
 xlabel('Time (min)')
@@ -400,7 +414,7 @@ line(tout(a:b) - 1200, yout(a:b, CpdRP), 'Color', 'k', 'LineWidth', 3, 'Linestyl
 hold on;
 box on;
 plot(tpCpdRP, scaled_pCpdRP, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
-legend('Simulation','Empirical')
+legend('Simulation',strcat('Empirical', ref_CpdR))
 xlim([0 150])
 title('CpdR~P')
 xlabel('Time (min)')
@@ -434,6 +448,7 @@ plot(tout(a:b) - 1200, yout(a:b,CPLX3), 'Color', 'k', 'LineWidth', 3, 'Linestyle
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
 title('Complex 3')
+legend("Simulation");
 xlim([0 150])
  
 f = gcf;
@@ -466,7 +481,7 @@ plot(time-1190,cpdr,'ro','MarkerFaceColor','r', 'MarkerSize', 15)  % plotting ex
 xlim([0 150])
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation','Empirical')
+legend('Simulation',strcat('Empirical', ref_CpdR))
 hold on;
  
 f = gcf;
@@ -489,7 +504,7 @@ rcda = (rcda - min(rcda))/(max(rcda)-min(rcda))*(max(RCDA)-min(RCDA))+min(RCDA);
 plot(tpRcdA, rcda, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)  % plotting experimental rcda points
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation', 'Empirical')
+legend('Simulation', strcat('Empirical', ref_RcdA))
  
 f = gcf;
 if save_figs == 1
@@ -511,7 +526,7 @@ xlim([0 150])
 title('cdG')
 xlabel('Time (min)')
 ylabel('Normalized Concentration')
-legend('Simulation', 'Empirical')
+legend('Simulation', strcat('Empirical', ref_cdG))
  
 f = gcf;
 if save_figs == 1
@@ -573,13 +588,15 @@ ybar = zeros(size(tout));
 threshold = (max(yout(:, CcrM)) + min(yout(:, CcrM)))/2;
 ybar(yout(:, CcrM)> threshold )=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
-title('CcrM')
+%title('CcrM')
 % legend('Experiment','Simulation','Curve')
 axis([0 150 0.5 2.5])
 grid on 
+box on;
 set(gca,'xtick',[0:30:150])
+set(gca,'xticklabel',[])
 set(gca,'ytick',[1,2])
-set(gca,'yticklabel',{'Experiment','Simulation'})
+set(gca,'yticklabel',{'Empirical','Simulation'})
 
 
 subplot(5,1,2)
@@ -594,12 +611,14 @@ ybar = zeros(size(tout));
 threshold = (max(yout(:, DnaA)) + min(yout(:, DnaA)))/2;
 ybar(yout(:, DnaA) > threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
-title('DnaA')
+%title('DnaA')
 axis([0 150 0.5 2.5])
-grid on 
+grid on;
+box on;
 set(gca,'xtick',[0:30:150])
+set(gca,'xticklabel',[])
 set(gca,'ytick',[1,2])
-set(gca,'yticklabel',{'Experiment','Simulation'})
+set(gca,'yticklabel',{'Empirical','Simulation'})
 
 subplot(5,1,3)
 % figure(63)
@@ -613,13 +632,15 @@ ybar = zeros(size(tout));
 threshold = (max(yout(:, GcrA)) + min(yout(:, GcrA)))/2;
 ybar(yout(:, GcrA)>threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
-title('GcrA')
+%title('GcrA')
 % legend('Experiment','Simulation','Curve')
 axis([0 150 0.5 2.5])
 grid on 
+box on;
 set(gca,'xtick',[0:30:150])
+set(gca,'xticklabel',[])
 set(gca,'ytick',[1,2])
-set(gca,'yticklabel',{'Experiment','Simulation'})
+set(gca,'yticklabel',{'Empirical','Simulation'})
 
 subplot(5,1,4)
 % figure(64)
@@ -633,13 +654,15 @@ ybar = zeros(size(tout));
 threshold = (max(yout(:, SciP)) + min(yout(:, SciP)))/2;
 ybar(yout(:, SciP)> threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
-title('SciP')
+%title('SciP')
 % legend('Experiment','Simulation','Curve')
 axis([0 150 0.5 2.5])
 grid on 
+box on;
 set(gca,'xtick',[0:30:150])
+set(gca,'xticklabel',[])
 set(gca,'ytick',[1,2])
-set(gca,'yticklabel',{'Experiment','Simulation'})
+set(gca,'yticklabel',{'Empirical','Simulation'})
 
 subplot(5,1,5)
 % figure(65)
@@ -649,17 +672,18 @@ space1 = zeros(1,45);
 e1 = [avg, space1, avg2];
 scatter(et, e1, 'sr', 'LineWidth', 3, 'MarkerFaceColor', 'r' );
 hold on;
+box on;
 ybar = zeros(size(tout));
 threshold = (max(yout(:, CtrA)) + min(yout(:, CtrA)))/2;
 ybar(yout(:, CtrA)> threshold)=2;
 scatter(tout, ybar, 'sb', 'LineWidth', 3, 'MarkerFaceColor', 'b' );
-title('CtrA')
+%title('CtrA')
 % legend('Experiment','Simulation','Curve')
 axis([0 150 0.5 2.5])
 grid on 
 set(gca,'xtick',[0:30:150])
 set(gca,'ytick',[1,2])
-set(gca,'yticklabel',{'Experiment','Simulation'})
+set(gca,'yticklabel',{'Empirical','Simulation'})
 if save_figs == 1
      exportgraphics(f,'./resources/generated_plots/line_chart.eps','Resolution',300)
 end
