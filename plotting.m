@@ -1,6 +1,6 @@
 %% Ploting the time courses of model variables
 
-set(groot, 'DefaultAxesFontSize', 36)
+set(groot, 'DefaultAxesFontSize', 44)
 set(groot, 'defaultFigurePosition', [100 100 500 400])
 set(groot,'DefaultFigureColormap',jet)  
 set(groot,'DefaultAxesColorOrder',[0 0 1; 0 .5 0; 1 0 0; 0 .75 .75; .75 0 .75; .75 .75 0; .25 .25 .25])
@@ -8,7 +8,7 @@ set(groot,'DefaultFigureGraphicsSmoothing','off')
 box on
 
 close all; clf;
-
+ 
 load('output.mat')
 
 save_figs = 0;  %switch for saving: 1 = save; 0 = no save
@@ -148,7 +148,7 @@ xlim([0 150])
 legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA), 'location', 'northwest')
 title('\it{ccrM}')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 
 f = gcf; 
 if save_figs == 1
@@ -170,7 +170,7 @@ legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA));
 title('\it{dnaA}')
 xlabel('Time (min)')
 xlim([0 150])
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
  
 f = gcf;
 if save_figs == 1
@@ -191,7 +191,7 @@ xlim([0 150])
 legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA))
 title('\it{gcrA}')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 f = gcf;
 ytickformat('%.1f')
 
@@ -213,7 +213,7 @@ legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA), 'location
 xlim([0 150])
 title('\it{sciP}')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/sciP.eps','Resolution',300)
@@ -233,7 +233,7 @@ legend('Simulation',strcat('Empirical', ref_ccrM_dnaA_gcrA_sciP_ctrA), 'location
 xlim([0 150])
 title('\it{ctrA}')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/ctrA.eps','Resolution',300)
@@ -255,7 +255,7 @@ legend('Simulation',strcat('Empirical 1', ref_CcrM_1), strcat('Empirical 2', ref
 xlim([0 150])
 title('CcrM')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 f = gcf;
 if save_figs == 1
     exportgraphics(f,'./resources/generated_plots/Ccrm_protein.eps','Resolution',300)
@@ -276,7 +276,7 @@ legend('Simulation',strcat('Empirical 1', ref_DnaA_1), strcat('Empirical 2', ref
 xlim([0 150])
 title('DnaA')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
  
 f = gcf;
 if save_figs == 1
@@ -299,7 +299,7 @@ legend('Simulation',strcat('Empirical 1', ref_GcrA_1), strcat('Empirical 2', ref
 xlim([0 150])
 title('GcrA')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
  
 f = gcf;
 if save_figs == 1
@@ -320,7 +320,7 @@ legend('Simulation', strcat('Empirical', ref_SciP), 'location', 'north')
 xlim([0 150])
 title('SciP')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
  
 f = gcf;
 if save_figs == 1
@@ -344,7 +344,7 @@ legend('Simulation',strcat('Empirical 1', ref_CtrA_1), strcat('Empirical 2', ref
 xlim([0 150])
 title('CtrA')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
  
 f = gcf;
 if save_figs == 1
@@ -397,7 +397,7 @@ box on;
 plot(tout(a:b) - 1200, yout(a:b, CPLX1), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '-');
 xlim([0 150]);
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 title('Complex 1')
  
 f = gcf;
@@ -418,7 +418,7 @@ legend('Simulation',strcat('Empirical', ref_CpdR))
 xlim([0 150])
 title('CpdR~P')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
  
 f = gcf; 
 if save_figs == 1
@@ -431,7 +431,7 @@ hold on;
 box on;
 plot(tout(a:b) - 1200, yout(a:b, CPLX2), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '-');
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 title('Complex 2')
 xlim([0 150])
  
@@ -446,7 +446,7 @@ hold on;
 box on;
 plot(tout(a:b) - 1200, yout(a:b,CPLX3), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '-');
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 title('Complex 3')
 legend("Simulation");
 xlim([0 150])
@@ -480,7 +480,7 @@ plot(time-1190,cpdr,'ro','MarkerFaceColor','r', 'MarkerSize', 15)  % plotting ex
 
 xlim([0 150])
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 legend('Simulation',strcat('Empirical', ref_CpdR))
 hold on;
  
@@ -503,7 +503,7 @@ rcda = (rcda - min(rcda))/(max(rcda)-min(rcda))*(max(RCDA)-min(RCDA))+min(RCDA);
 
 plot(tpRcdA, rcda, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)  % plotting experimental rcda points
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 legend('Simulation', strcat('Empirical', ref_RcdA))
  
 f = gcf;
@@ -514,18 +514,18 @@ end
 %% plotting cdG and DivK~P
 % cdG plot
 % scaling data:
-scaled_pcdG = (pcdG - min(pcdG))/(max(pcdG)-min(cdG(a:b)))*(max(cdG(a:b))-min(cdG(a:b)))+min(cdG(a:b));
+%scaled_pcdG = (pcdG - min(pcdG))/(max(pcdG)-min(cdG(a:b)))*(max(cdG(a:b))-min(cdG(a:b)))+min(cdG(a:b));
 
 figure()
  
 line(tout(a:b) - 1200 , cdG(a:b), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '-');
 hold on;
 box on;
-plot(tpcdG, scaled_pcdG, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
+plot(tpcdG, pcdG, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
 xlim([0 150])
 title('cdG')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 legend('Simulation', strcat('Empirical', ref_cdG))
  
 f = gcf;
@@ -546,7 +546,7 @@ plot(tpDivKP, scaled_pDivKP, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 15)
 xlim([0 150])
 title('DivK~P')
 xlabel('Time (min)')
-ylabel('Normalized Concentration')
+ylabel('Normalized Conc.')
 legend('Simulation', 'Empirical', 'location', 'northwest')
  
 f = gcf;
