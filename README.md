@@ -46,7 +46,10 @@ For running the Caulobacter cell cycle model `main5RegCPLX.m`, please load `opt_
 - `pareto_plot.m / pareto_plotFinal.m`: script for plotting 
 
 
+## Software Requirement
 
+## Citations
+Please refer to our paper-------
 
 ## Contact
 If you have any further questions or suggestions, please contact chenm@wfu.edu
