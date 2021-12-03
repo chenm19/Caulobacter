@@ -135,7 +135,7 @@ save('model_result.mat', 'tout', 'yout')
 %  init = yout(end,:);
 %  save('init.mat', 'init')
 
-%  mutantPlotter(tout, yout)
+%  mutantPlotterFinal(tout, yout)
 %  FinalFigGenerator(tout, yout)
 graphCellCycle(tout, yout)
 
