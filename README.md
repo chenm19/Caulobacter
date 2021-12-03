@@ -4,7 +4,7 @@ Matlab code for simulating Caulobacter cell cycle model
 Run main5RegCPLX.m
 
 ## Code Structure for Model-Caulo
-There are total of 9 script files, with the following dependecy structure
+There are total of 7 script files, with the following dependecy structure
 
     main5RegCPLX.m
     ├──load_para.m
@@ -25,6 +25,7 @@ For running the Caulobacter cell cycle model `main5RegCPLX.m`, please load `opt_
 `events5RegCPLX.m` and `odes5RegCPLX.m` are the ODEs and events for the model, please make sure they are under the same folder as `main5RegCPLX.m`.
 
 ## Code Structure for MOPGA-Caulo
+There are total of 9 script files, with the following dependecy structure
 
     ├──load_para.m
     ├──load_data.m
@@ -47,6 +48,8 @@ Load different starting points or change options in below for better Multi-obj G
 ```
 options = optimoptions('gamultiobj','MaxGenerations', 30,'PopulationSize', 50, 'InitialPopulation', para, 'PlotFcn', @gaplotpareto);
 ```
+
+Load the optimized parameter output (`opt_result.mat`), run `main5RegCPLX.m` to load the model, and the resulted output will be stored under the name `model_result.mat`. `events5RegCPLX.m` and `odes5RegCPLX.m` are the ODEs and events for the model, please make sure they are under the same folder as `main5RegCPLX.m`.
 
 For plotting experimental data vs. simulated data for proteins, please load `model_result.mat` for outputs.
 
