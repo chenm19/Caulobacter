@@ -14,11 +14,11 @@ There are total of 9 script files, with the following dependecy structure
     ├──mutantPlotterFinal.m
     ├──graphCellCycle.m / graphCellCycleFinal.m
     
-- 'main5RegCPLX.m': numericaly simulation of Caulobacter cell cycle model.
-- 'events5RegCPLX.m': script for detecting specific events of the cell cycle.
-- 'odes5RegCPLX.m': script for ordinary differential equations of Caulobacter cell cycle model
-- 'load_para.m' and 'load_data.m': load the data and parameters used in the model
-- 'mutantPlotterFinal.m' and 'graphCellCycle.m / graphCellCycleFinal.m': plotting simulations for mutant cases as well as regular proteins
+- `main5RegCPLX.m`: numericaly simulation of Caulobacter cell cycle model.
+- `events5RegCPLX.m`: script for detecting specific events of the cell cycle.
+- `odes5RegCPLX.m`: script for ordinary differential equations of Caulobacter cell cycle model
+- `load_para.m` and `load_data.m`: load the data and parameters used in the model
+- `mutantPlotterFinal.m` and `graphCellCycle.m / graphCellCycleFinal.m`: plotting simulations for mutant cases as well as regular proteins
 
 ### Usage:
 
@@ -36,13 +36,13 @@ There are total of 9 script files, with the following dependecy structure
     ├──graphCellCycle.m / graphCellCycleFinal.m
 
     
-- 'caulo_MOPGA.m': script for running Genetic Algorithm for parameter optimization
-- 'fitness.m': fitness function used by Genetic Algorithm for parameter optimization
+- `caulo_MOPGA.m`: script for running Genetic Algorithm for parameter optimization
+- `fitness.m`: fitness function used by Genetic Algorithm for parameter optimization
 
 
 
 
-- 'pareto_plot.m / pareto_plotFinal.m': script for plotting 
+- `pareto_plot.m / pareto_plotFinal.m`: script for plotting 
 
 
 
