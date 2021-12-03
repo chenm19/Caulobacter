@@ -34,7 +34,7 @@ For running the Caulobacter cell cycle model `main5RegCPLX.m`, please load `opt_
     ├──caulo_MOPGA.m
     |  ├──fitness.m
     ├──mutantPlotterFinal.m
-    ├──graphCellCycle.m / graphCellCycleFinal.m
+    └──graphCellCycle.m / graphCellCycleFinal.m
 
     
 - `caulo_MOPGA.m`: script for running Genetic Algorithm for parameter optimization
