@@ -68,4 +68,4 @@ mut = 1
 MATLAB, Fortran
 
 ## Contact
-If you have any further questions or suggestions, please contact chenm@wfu.edu
+If you have any further questions or suggestions, please contact chenm@wfu.edu, daimm18@wfu.edu
