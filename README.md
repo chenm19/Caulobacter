@@ -61,9 +61,6 @@ save_figs = 0;
 mut = 1
 ```
 
-### VTMOP-Caulo
-
-
 ## Software Requirement
 MATLAB
 
