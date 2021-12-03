@@ -65,10 +65,7 @@ mut = 1
 ```
 
 ## Software Requirement
-MATLAB
-
-## Citations
-Please refer to our paper-------
+MATLAB, Fortran
 
 ## Contact
 If you have any further questions or suggestions, please contact chenm@wfu.edu
