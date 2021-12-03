@@ -2,9 +2,9 @@
 
 ## Structure of the repository
 ```
-    ├──MOPGA-Caulo
-    ├──Model-Caulo
-    ├──VTMOP-Caulo
+┌──MOPGA-Caulo
+├──Model-Caulo
+└──VTMOP-Caulo
 ```
 
 ## Software Requirement
