@@ -1,8 +1,10 @@
-function load_data()
 %%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
 % Script for loading all experimental data for 15 species in Caulobacter
 % cell cycle model
 %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
+
+function load_data()
+
 global dDnaA dCcrM dSciP dGcrA dCtrA pCcrM3 pCcrM5 pDnaA1 pGcrA1 pSciP2 pCtrA3 pCtrA5 ...
         t tp1 tp2 tp3 tp5 tpPleD pPleD
 global Ini Elong DNA Count hcori hCcrM hCtrA tpPdeA dPdeA rcda tpRcdA pCpdR tpCpdR...
