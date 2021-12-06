@@ -1,4 +1,3 @@
-function error = fitness(para)
 %%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
 % Script for objective functions of parameter optimizations in Caulobacter 
 % cell cycle model. 
@@ -6,6 +5,8 @@ function error = fitness(para)
 % Input para: 47 parameters need to be optimized
 % Output error: two objective function values
 %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
+
+function error = fitness(para)
 
 global dDnaA dCcrM dSciP dGcrA dCtrA pCcrM3 pCcrM5 pDnaA1 pGcrA1 pSciP2 pCtrA3 pCtrA5 ...
         t tp1 tp2 tp3 tp5 tpPleD pPleD tpPdeA dPdeA tpRcdA pCpdR tpCpdR tpcdG pcdG rcda
