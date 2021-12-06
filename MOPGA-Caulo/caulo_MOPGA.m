@@ -30,5 +30,5 @@ options = optimoptions('gamultiobj','MaxGenerations', 30,'PopulationSize', 50, .
 
 [val, fval] = gamultiobj(@fitness, 47,[],[],[],[],lb,ub,options)
 
-save("opt_MultiGA_Outputs.mat", "val", "fval");
+save("./LoadMatrices/opt_MultiGA_Outputs.mat", "val", "fval");
 
