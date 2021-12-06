@@ -1,8 +1,10 @@
-function load_para()
 %%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
 % Script for loading all parameters in Caulobacter cell cycle model
 % Including 47 optimized parameters and 59 fixed parameters
 %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%
+
+function load_para()
+
 global p;
 
 p.kmcori =  1.4;
