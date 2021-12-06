@@ -26,7 +26,7 @@ load_para();
 load_data();
 
 % Load initial value of model variables
-load('init.mat','init'); 
+load('./LoadMatrices/init.mat','init'); 
 y0 = init;
 y0(Zring) = 0;
 ksZring = 0;
