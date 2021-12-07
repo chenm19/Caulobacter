@@ -23,7 +23,13 @@ For running parameter optimization in `caulo_MOPGA.m`, please make sure that `ev
 
 Load different starting points or change options in below for better Multi-obj GA performance:
 ```
+% load good starting point
+% load('best4S.mat')
+% para = val(2,:);
+
 options = optimoptions('gamultiobj','MaxGenerations', 30,'PopulationSize', 50, 'InitialPopulation', para, 'PlotFcn', @gaplotpareto);
 ```
 
-The outputed parameters will be stored in `opt_result.mat`.
+The outputed parameters will be stored in `opt_result.mat` in `LoadMatrices` folder.
+
+(For details of `events5RegCPLX.m`, `odes5RegCPLX.m`, please refer to `Model-Caulo`)
