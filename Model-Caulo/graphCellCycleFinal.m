@@ -436,8 +436,8 @@ figure(16)
 tpPleD=[0 10 20 30 40 50 60 70 80 90 100 110 120 130 140];
 pPleD =[0.097 0.112 0.089 0.067 0.049 0.036 0.027 0.021 0.03 0.057 0.085 0.107 0.123 0.061 0.089];
 scaled_pPleD = (pPleD - min(pPleD))/(max(pPleD)-min(pPleD))*(max(yout(a:b,PleD)+yout(a:b,PleDP))-min(yout(a:b,PleD)+yout(a:b,PleDP)))+min(yout(a:b,PleD)+yout(a:b,PleDP));
-line(tout, yout(:, PleD)+yout(:, PleDP), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '-');
-line(tout, yout(:, PleDP), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '--');
+line(tout(a:b)-1200, yout(a:b, PleD)+yout(a:b, PleDP), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '-');
+line(tout(a:b)-1200, yout(a:b, PleDP), 'Color', 'k', 'LineWidth', 3, 'Linestyle', '--');
 
 hold on;
 box on;
