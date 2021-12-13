@@ -11,7 +11,7 @@
 
 - `MOPGA-Caulo`: contains the scripts for running and plotting Multiple Objective Genetic Algorithm for optimizing parameters.
 - `Model-Caulo`: contains the scripts for running and plotting the numerical simulation of Caulobacter cell cycle model for wild types and mutant cases.
-- - `Model-Caulo-QSSA`: contains the quasi-steady-state assumption of Complex 3 with the same set of parameters with Model-Caulo for running and plotting the numerical simulation of Caulobacter cell cycle model for wild types and mutant cases.
+- `Model-Caulo-QSSA`: contains the quasi-steady-state assumption of Complex 3 with the same set of parameters with Model-Caulo for running and plotting the numerical simulation of Caulobacter cell cycle model for wild types and mutant cases.
 - `VTMOP-Caulo`: contains the scripts for running and plotting other Multiple Objective Optimization tools.
 
 ## Software Requirement
