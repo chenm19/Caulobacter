@@ -1,4 +1,4 @@
-## Code Structure for Model-Caulo
+## Code Structure for Model-Caulo with QSSA of Complex 3 formation
 There are total of 8 script files, with the following dependecy structure:
 
     main5RegCPLX.m
@@ -11,7 +11,7 @@ There are total of 8 script files, with the following dependecy structure:
     
 - `main5RegCPLX.m`: numericaly simulation of Caulobacter cell cycle model.
 - `events5RegCPLX.m`: script for detecting specific events of the cell cycle.
-- `odes5RegCPLX.m`: script for ordinary differential equations of Caulobacter cell cycle model
+- `odes5RegCPLX.m`: script for ordinary differential equations of Caulobacter cell cycle model with quasi-steady-state assumption of Complex 3.
 - `load_para.m` and `load_data.m`: load the data and parameters used in the model
 - `mutantPlotterFinal.m` and `graphCellCycle.m / graphCellCycleFinal.m`: plotting simulations for mutant cases as well as regular proteins
 
