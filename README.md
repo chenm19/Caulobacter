@@ -18,4 +18,4 @@
 MATLAB, Fortran
 
 ## Contact
-If you have any further questions or suggestions, please contact chenm@wfu.edu or daimm18@wfu.edu
+If you have any further questions or suggestions, please contact chenm@wfu.edu or rachelxu@vt.edu
